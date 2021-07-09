@@ -4,16 +4,9 @@ import {NavLink} from 'react-router-dom'
 
 export const Navbar = () => {
     const [active, setActive] = useState(false);
+    const [showMenu, setShowMenu] = useState(false);
 
-    //Muestra el menu
-    const showMenu = (toggleId, navId) => {
-        const toggle = document.getElementById(toggleId),
-        nav = document.getElementById(navId)
-    
-        if(toggle && nav)toggle.addEventListener('click', ()=> nav.classList.toggle('show'))
-    }
-
-    //Cambia el color del navbar
+    //Cambia el background del navbar
     const changeBackground = () => {
         if(window.scrollY >= 30){
             setActive(true);
@@ -25,17 +18,25 @@ export const Navbar = () => {
     
     window.addEventListener('scroll', changeBackground)
 
-    useEffect(()=> {
-        showMenu('nav-toggle', 'nav-menu')
+    //Muestra el menú
+    const Menu = (toggleId) => {
+        if(toggleId && !showMenu){
+            setShowMenu(true);
+        }else{
+            setShowMenu(false);
+        }
+    }
 
-        //Remueve el menu
+    useEffect(()=> {
+
+        /*Remueve el menu
         const navLink = document.querySelectorAll('.nav__link'),
         navMenu = document.getElementById('nav-menu')
 
         function linkAction(){ 
             navMenu.classList.remove('show')
         }
-        navLink.forEach(n => n.addEventListener('click', linkAction))
+        navLink.forEach(n => n.addEventListener('click', linkAction))*/
 
     }, [])
 
@@ -44,12 +45,12 @@ export const Navbar = () => {
         <header className={(active) ? "l-header scroll-header" : "l-header"} id="header">
             <nav className="nav bd-grid">
                 <div className="nav__toggle" id="nav-toggle">
-                    <i className='bx bx-menu' ></i>
+                    <i className='bx bx-menu' id="toggle" onClick={(e)=> Menu(e.target.id)} ></i>
                 </div>
 
                 <p className="nav__logo">APP__DEVELOP_VELAS</p>
 
-                <div className="nav__menu" id="nav-menu">
+                <div className={(showMenu) ? "nav__menu show" : "nav__menu"} id="nav-menu">
                     <ul className="nav__list">
                         <li className="nav__item"><NavLink exact to="/" className="nav__link" id="nav-link">Inicio</NavLink></li>
                         <li className="nav__item"><NavLink to="/shop" className="nav__link">Tienda</NavLink></li>
