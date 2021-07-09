@@ -18,7 +18,7 @@ export const Navbar = () => {
     
     window.addEventListener('scroll', changeBackground)
 
-    //Muestra el menú
+    //Muestra u oculta el menú
     const Menu = (toggleId) => {
         if(toggleId && !showMenu){
             setShowMenu(true);
@@ -27,16 +27,15 @@ export const Navbar = () => {
         }
     }
 
+    //Oculta el menú al hacer click en un link del menú
+    const LinkAction = (linkId) => {
+        if(linkId && showMenu){
+            setShowMenu(false)
+        }
+    }
+
     useEffect(()=> {
 
-        /*Remueve el menu
-        const navLink = document.querySelectorAll('.nav__link'),
-        navMenu = document.getElementById('nav-menu')
-
-        function linkAction(){ 
-            navMenu.classList.remove('show')
-        }
-        navLink.forEach(n => n.addEventListener('click', linkAction))*/
 
     }, [])
 
@@ -52,16 +51,16 @@ export const Navbar = () => {
 
                 <div className={(showMenu) ? "nav__menu show" : "nav__menu"} id="nav-menu">
                     <ul className="nav__list">
-                        <li className="nav__item"><NavLink exact to="/" className="nav__link" id="nav-link">Inicio</NavLink></li>
-                        <li className="nav__item"><NavLink to="/shop" className="nav__link">Tienda</NavLink></li>
-                        <li className="nav__item"><NavLink to="/account" className="nav__link">Cuenta</NavLink></li>
+                        <li className="nav__item"><NavLink exact to="/" className="nav__link" id="nav-link" onClick={(e)=> LinkAction(e.target.id)}>Inicio</NavLink></li>
+                        <li className="nav__item"><NavLink to="/shop" className="nav__link" id="nav-link" onClick={(e)=> LinkAction(e.target.id)}>Tienda</NavLink></li>
+                        <li className="nav__item"><NavLink to="/account" className="nav__link" id="nav-link" onClick={(e)=> LinkAction(e.target.id)}>Cuenta</NavLink></li>
                         <li className="nav__item dropdown">
                             <NavLink to="#" className="dropdown__link">Ajustes <i className='bx bx-chevron-down dropdown__icon'></i></NavLink>
                                     
                             <ul className="dropdown__menu">
-                                <li className="dropdown__item"><NavLink to="#" className="modal__link">Perfil</NavLink></li>
-                                <li className="dropdown__item"><NavLink to="#" className="modal__link">Contraseña</NavLink></li>
-                                <li className="dropdown__item"><NavLink to="#" className="modal__link">Cuenta</NavLink></li>
+                                <li className="dropdown__item"><NavLink to="#" className="modal__link" id="nav-link" onClick={(e)=> LinkAction(e.target.id)}>Perfil</NavLink></li>
+                                <li className="dropdown__item"><NavLink to="#" className="modal__link" id="nav-link" onClick={(e)=> LinkAction(e.target.id)}>Contraseña</NavLink></li>
+                                <li className="dropdown__item"><NavLink to="#" className="modal__link" id="nav-link" onClick={(e)=> LinkAction(e.target.id)}>Cuenta</NavLink></li>
                             </ul>
                         </li>
                         <li className="nav__item"><NavLink to="#" className="nav__link">Cerrar sesión</NavLink></li>
