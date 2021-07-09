@@ -346,11 +346,15 @@ img{
   top:11%;
   left:0;
   right: 0;
-  background: rgba(255,255,255,.3);
+  background: rgba(0,0,0,.5);
   display: flex;
   align-items: center;
   justify-content: center;
+  padding: 0 1rem;
   z-index: var(--z-modal);
+  opacity:0;
+  visibility: show;
+  transition: .3s;
 }
 
 .modal__container{
@@ -399,6 +403,15 @@ img{
 .modal__message{
   font-size:var(--smaller-font-size);
   color: var(--dark-color);
+}
+
+.modal__link:hover{
+  color: var(--dark-light);
+}
+
+.active__modal{
+  opacity: 1;
+  visibility: visible;
 }
 
 .close__icon{

@@ -1,8 +1,9 @@
-import React,{useEffect} from 'react';
+import React,{useState, useEffect} from 'react';
 
 import {NavLink} from 'react-router-dom'
 
 export const Navbar = () => {
+    const [active, setActive] = useState(false);
 
     //Muestra el menu
     const showMenu = (toggleId, navId) => {
@@ -11,6 +12,18 @@ export const Navbar = () => {
     
         if(toggle && nav)toggle.addEventListener('click', ()=> nav.classList.toggle('show'))
     }
+
+    //Cambia el color del navbar
+    const changeBackground = () => {
+        if(window.scrollY >= 30){
+            setActive(true);
+        }
+        else{
+            setActive(false);
+        }
+    }
+    
+    window.addEventListener('scroll', changeBackground)
 
     useEffect(()=> {
         showMenu('nav-toggle', 'nav-menu')
@@ -24,18 +37,11 @@ export const Navbar = () => {
         }
         navLink.forEach(n => n.addEventListener('click', linkAction))
 
-        //Cambia el color del encabezado
-        window.onscroll = ()=> {
-            const nav = document.getElementById('header')
-            if(window.scrollY >= 30) nav.classList.add('scroll-header');
-            else nav.classList.remove('scroll-header')
-        }
-
     }, [])
 
     return (
 
-        <header className="l-header" id="header">
+        <header className={(active) ? "l-header scroll-header" : "l-header"} id="header">
             <nav className="nav bd-grid">
                 <div className="nav__toggle" id="nav-toggle">
                     <i className='bx bx-menu' ></i>
@@ -45,16 +51,16 @@ export const Navbar = () => {
 
                 <div className="nav__menu" id="nav-menu">
                     <ul className="nav__list">
-                        <li className="nav__item"><NavLink exact to="/" className="nav__link">Inicio</NavLink></li>
+                        <li className="nav__item"><NavLink exact to="/" className="nav__link" id="nav-link">Inicio</NavLink></li>
                         <li className="nav__item"><NavLink to="/shop" className="nav__link">Tienda</NavLink></li>
                         <li className="nav__item"><NavLink to="/account" className="nav__link">Cuenta</NavLink></li>
                         <li className="nav__item dropdown">
                             <NavLink to="#" className="dropdown__link">Ajustes <i className='bx bx-chevron-down dropdown__icon'></i></NavLink>
                                     
                             <ul className="dropdown__menu">
-                                <li className="dropdown__item"><NavLink to="#" className="nav__link">Perfil</NavLink></li>
-                                <li className="dropdown__item"><NavLink to="#" className="nav__link">Contraseña</NavLink></li>
-                                <li className="dropdown__item"><NavLink to="#" className="nav__link">Cuenta</NavLink></li>
+                                <li className="dropdown__item"><NavLink to="#" className="modal__link">Perfil</NavLink></li>
+                                <li className="dropdown__item"><NavLink to="#" className="modal__link">Contraseña</NavLink></li>
+                                <li className="dropdown__item"><NavLink to="#" className="modal__link">Cuenta</NavLink></li>
                             </ul>
                         </li>
                         <li className="nav__item"><NavLink to="#" className="nav__link">Cerrar sesión</NavLink></li>
@@ -64,6 +70,7 @@ export const Navbar = () => {
                 <div className="nav__shop">
                     <i className='bx bx-shopping-bag bx-flashing-hover'></i>
                 </div>
+            
             </nav>
         </header>
     )   
