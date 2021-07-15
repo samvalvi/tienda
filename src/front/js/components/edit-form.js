@@ -3,10 +3,10 @@ import React from 'react'
 export const EditForm = () => {
     return  (
         <main className="l-main">
-            <section className="account section">
+            <section className="section">
                 <h2 className="section-title">Ajustes</h2>
            
-                <div className="edit">
+                <div className="edit bd-grid">
                     <div className="edit__container">
 
                         <div className="edit__message-container">

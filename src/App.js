@@ -8,8 +8,8 @@ import Home from './front/js/views/home'
 import {CandleStore} from './front/js/views/candle-store'
 import {Account} from './front/js/views/account'
 import {EditForm} from './front/js/components/edit-form'
-import {RecoverPassword} from './front/js/components/recover-password'
-import {SendCode} from './front/js/components/send-code'
+import {RecoverPassword} from './front/js/views/recover-password'
+import {SendCode} from './front/js/views/send-code'
 
 function App() {
   return (
@@ -20,8 +20,8 @@ function App() {
         <Route path="/" exact component={Home}/>
         <Route path="/shop" exact component={CandleStore} />
         <Route path="/account" exact component={Account} />
-        <Route path="/settings/edit" exact component={EditForm} />
-        <Route path="/recover" exact component={RecoverPassword} />
+        <Route path="/settings" exact component={EditForm} />
+        <Route path="/update" exact component={RecoverPassword} />
         <Route path="/send" exact component={SendCode} />
       </Switch>
     </Router>

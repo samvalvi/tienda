@@ -21,6 +21,7 @@
   --h2-font-size: 1.25rem;
   --normal-font-size:.938rem;
   --smaller-font-size:.813rem;
+  --smallest-font-size:.625rem;
   
   /*MARGINS*/
   --mb-1:.5rem;
@@ -341,7 +342,6 @@ img{
 
 /*EDIT FORM*/
 .edit{
-  top:11%;
   left:0;
   right: 0;
   display: flex;
@@ -356,6 +356,7 @@ img{
   background-color: var(--dark-lighten);
   padding: 1.5rem;
   border-radius: .5rem;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 6px -1px, rgba(0, 0, 0, 0.06) 0px 2px 4px -1px;
 }
 
 .edit__box{
@@ -411,8 +412,6 @@ img{
 
 /*UPDATE FORM*/
 .update__password{
-  position: fixed;
-  top:11%;
   left:0;
   right: 0;
   display: flex;
@@ -532,10 +531,8 @@ img{
   color: var(--dark-color);
 }
 
-/*MODAL*/
-.modal{
-  position: fixed;
-  top:11%;
+/*SEND CODE*/
+.send__code{
   left:0;
   right: 0;
   display: flex;
@@ -546,13 +543,15 @@ img{
   transition: .3s;
 }
 
-.modal__container{
+.send__code-container{
   background-color: var(--dark-lighten);
   padding: 1.5rem;
   border-radius: .5rem;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 6px -1px, rgba(0, 0, 0, 0.06) 0px 2px 4px -1px;
+  width: 40%;
 }
 
-.modal__box{
+.send__code-box{
   display: flex;
   flex-direction: row;
   column-gap: .5rem;
@@ -563,12 +562,12 @@ img{
   border-radius: .5rem;
 }
 
-.modal__icon{
+.send__code-icon{
   font-size: 1.5rem;
   color: var(--dark-color);
 }
 
-.modal__input{
+.send__code-input{
   border: none;
   outline: none;
   font-size: var(--normal-font-size);
@@ -577,32 +576,86 @@ img{
   width: calc(100% - .1rem);
 }
 
-.modal__input::placeholder{
+.send__code-input::placeholder{
   font-size: var(--normal-font-size);
   font-family: var(--body-font);
   color: var(--dark-light);
 }
 
-.modal__message-container{
+.send__message-container{
   display:flex;
   flex-direction: row;
   margin-bottom: var(--mb-3);
 }
 
-.modal__message{
+.send__code-message{
   font-size:var(--smaller-font-size);
   color: var(--dark-color);
 }
 
-.modal__link:hover{
+/*RECOVER FORM*/
+.recover{
+  left:0;
+  right: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 1rem;
+  visibility: show;
+  transition: .3s;
+}
+
+.recover__container{
+  background-color: var(--dark-lighten);
+  padding: 1.5rem;
+  border-radius: .5rem;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 6px -1px, rgba(0, 0, 0, 0.06) 0px 2px 4px -1px;
+  width: 40%;
+}
+
+.recover__box{
+  display: flex;
+  flex-direction: row;
+  column-gap: .5rem;
+  padding: 1.125rem 1rem;
+  background-color: #FFF;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  border-radius: .5rem;
+}
+
+.recover__icon{
+  font-size: 1.5rem;
+  color: var(--dark-color);
+}
+
+.recover__input{
+  border: none;
+  outline: none;
+  font-size: var(--normal-font-size);
+  font-weight: var(--normal-font-weight);
+  color: var(--dark-color);
+  width: calc(100% - .1rem);
+}
+
+.recover__input::placeholder{
+  font-size: var(--normal-font-size);
+  font-family: var(--body-font);
   color: var(--dark-light);
 }
 
-.active__modal{
-  opacity: 1;
-  visibility: visible;
+.recover__message-container{
+  display:flex;
+  flex-direction: row;
+  margin-bottom: var(--mb-3);
 }
 
+.recover__message{
+  font-size:var(--smaller-font-size);
+  color: var(--dark-color);
+}
+
+/*CLOSE ICON*/
 .close__icon{
   font-size: 1.25rem;
   margin-left: auto;
@@ -620,6 +673,16 @@ img{
   width: auto;
   height: 1px;
   background: var(--dark-color);
+}
+
+/*ILUSTRATIONS LICENSE*/
+.license__container{
+  padding: 0 0 1rem 0;
+}
+
+.license__message{
+  color: var(--dark-light);
+  font-size: var(--smallest-font-size);
 }
 
 /*FOOTER*/
