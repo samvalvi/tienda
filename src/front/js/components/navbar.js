@@ -64,7 +64,7 @@ export const Navbar = () => {
                                     
                             <ul className="dropdown__menu">
                                 <li className="dropdown__item">
-                                    <NavLink to="/settings" className="modal__link" id="nav-link" onClick={(e)=> LinkAction(e.target.id)}>Perfil</NavLink>
+                                    <NavLink to="/settings" className="nav__link" id="nav-link" onClick={(e)=> LinkAction(e.target.id)}>Perfil</NavLink>
                                     
                                 </li>
                             </ul>

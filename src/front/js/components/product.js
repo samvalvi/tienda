@@ -15,7 +15,7 @@ export const Product = () => {
                     <h1 className="home__title">Nombre del Producto </h1>
                     <h1 className="home__subtitle">Precio ₡</h1>
                     <p className="home__description">Explore la tienda para encontrar más productos.</p>
-                    <a href="#" className="button">Comprar ahora <i className='bx bx-right-arrow-alt button-icon bx-fade-right-hover'></i></a>
+                    <a href="#" className="button">Comprar ahora</a>
                 </div>
             </div>
         </section>

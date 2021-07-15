@@ -19,6 +19,7 @@ def hello():
 def registrar():
     primer_nombre = request.json.get('primer_nombre', None)
     primer_apellido = request.json.get('primer_apellido', None)
+    provincia = request.json.get('provincia', None)
     correo = request.json.get('correo', None)
     clave = request.json.get('clave', None)
     repetir_clave = request.json.get('repetir_clave', None)
@@ -31,6 +32,8 @@ def registrar():
         return jsonify({'msg': 'Debe indicar un correo electrónico', 'status': 'failed'}), 400
     if not clave:
         return jsonify({'msg': 'Debe crear una contraseña', 'status': 'failed'}), 400
+    if not provincia:
+            return jsonify({'msg': 'Debe especificar la provincia', 'status': 'failed'}), 400
     if not repetir_clave:
         return jsonify({'msg': 'Debe repetir su contraseña', 'status': 'failed'}), 400
     if clave != repetir_clave:
@@ -165,6 +168,8 @@ def crear_producto():
         color = request.json.get("color", None)
         esencia = request.json.get("esencia", None)
         modelo = request.json.get("modelo", None)
+        precio = request.json.get("precio", None)
+        imagen = request.json.get("imagen", None)
 
         if not color:
             return jsonify({'msg': 'Debe especificar el color', 'status': 'failed'}), 400
@@ -172,11 +177,17 @@ def crear_producto():
             return jsonify({'msg': 'Debe especificar la esencia', 'status': 'failed'}), 400
         if not modelo:
             return jsonify({'msg': 'Debe especificar el modelo', 'status': 'failed'}), 400
+        if not precio:
+            return jsonify({'msg': 'Debe especificar el modelo', 'status': 'failed'}), 400
+        if not imagen:
+            return jsonify({'msg': 'Debe ingresar la imagen', 'status': 'failed'}), 400
 
         candela = Candela()
         candela.color = color
         candela.esencia = esencia
         candela.modelo = modelo
+        candela.precio = precio
+        candela.imagen = imagen
 
         db.session.add(candela)
         db.session.commit()
@@ -422,7 +433,7 @@ def mostrar_orden():
     return jsonify(response_body)
 
 
-@api.route('/settings/update', methods=['PUT'])
+@api.route('/update', methods=['PUT'])
 @jwt_required()
 def actualizar_clave():
     current_user_id = get_jwt_identity()
@@ -475,9 +486,9 @@ def recuperar_clave():
     return jsonify(response_body), 200
     
 
-@api.route('/admin/settings/update', methods=['PUT'])
+@api.route('/admin/update', methods=['PUT'])
 @jwt_required()
-def actualizar_clave():
+def actualizar_clave_admin():
     current_user_id = get_jwt_identity()
 
     nueva_clave = request.json.get('nueva_clave', None)
@@ -495,6 +506,30 @@ def actualizar_clave():
     admin.clave = hash_password
     
     db.session.commit()
+
+    response_body = {
+        'msg': 'Contraseña actualizada',
+        'status': 'successful'
+    }
+
+    return jsonify(response_body), 200
+
+@api.route('/admin/recover')
+def recuperar_clave_admin():
+    
+    codigo = request.json.get('codigo', None)
+    nueva_clave = request.json.get('nueva_clave', None)
+    repetir_clave = request.json.get('repetir_clave', None)
+    
+    if not codigo:
+        return jsonify({'msg': 'Debe ingresar el código enviado', 'status': 'failed'}), 400
+    
+    if not nueva_clave or not repetir_clave:
+        return jsonify({'msg': 'Todos los campos son requeridos', 'status': 'failed'}), 400
+
+    if nueva_clave != repetir_clave:
+        return jsonify({'msg': 'Las contraseñas no coinciden', 'status': 'failed'}), 400
+    
 
     response_body = {
         'msg': 'Contraseña actualizada',
