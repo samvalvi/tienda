@@ -23,7 +23,7 @@ export const SendCode = () => {
                         </div>
 
                         <div className="dialog__box">
-                            <p className="send__message">Se enviará un código y un link a su email.</p>
+                            <p className="send__message">Se enviará un código a su email.</p>
                         </div>
 
                         <form action="">

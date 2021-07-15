@@ -4,7 +4,7 @@ export const EditForm = () => {
     return  (
         <main className="l-main">
             <section className="section">
-                <h2 className="section-title">Ajustes</h2>
+                <h2 className="section-title">Perfil</h2>
            
                 <div className="edit bd-grid">
                     <div className="edit__container">

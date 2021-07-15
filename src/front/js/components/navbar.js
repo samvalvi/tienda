@@ -1,7 +1,6 @@
 import React,{useState, useEffect} from 'react';
 
 import {NavLink} from 'react-router-dom'
-import {EditForm} from '../components/edit-form'
 
 export const Navbar = () => {
     const [active, setActive] = useState(false);
@@ -65,11 +64,9 @@ export const Navbar = () => {
                                     
                             <ul className="dropdown__menu">
                                 <li className="dropdown__item">
-                                    <NavLink to="#" className="modal__link" id="nav-link" onClick={(e)=> LinkAction(e.target.id)}>Perfil</NavLink>
+                                    <NavLink to="/settings" className="modal__link" id="nav-link" onClick={(e)=> LinkAction(e.target.id)}>Perfil</NavLink>
                                     
                                 </li>
-                                <li className="dropdown__item"><NavLink to="#" className="modal__link" id="nav-link" onClick={(e)=> LinkAction(e.target.id)}>Contraseña</NavLink></li>
-                                <li className="dropdown__item"><NavLink to="#" className="modal__link" id="nav-link" onClick={(e)=> LinkAction(e.target.id)}>Cuenta</NavLink></li>
                             </ul>
                         </li>
                         <li className="nav__item"><NavLink to="#" className="nav__link">Cerrar sesión</NavLink></li>

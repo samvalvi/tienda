@@ -548,7 +548,7 @@ img{
   padding: 1.5rem;
   border-radius: .5rem;
   box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 6px -1px, rgba(0, 0, 0, 0.06) 0px 2px 4px -1px;
-  width: 40%;
+  width: 43%;
 }
 
 .send__code-box{
@@ -610,7 +610,7 @@ img{
   padding: 1.5rem;
   border-radius: .5rem;
   box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 6px -1px, rgba(0, 0, 0, 0.06) 0px 2px 4px -1px;
-  width: 40%;
+  width: 43%;
 }
 
 .recover__box{
@@ -799,6 +799,11 @@ img{
   font-size: var(--small-font-size);
   font-weight: 600;
   color: var(--dark-color);
+  transition: .3s;
+}
+
+.login__forgot:hover{
+  transform: translateY(-.25rem);
 }
 
 /*REGISTER*/

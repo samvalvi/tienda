@@ -1,4 +1,5 @@
 import React from 'react'
+import {NavLink} from 'react-router-dom'
 
 import {Footer} from '../components/footer'
 
@@ -24,12 +25,12 @@ export const Account = () => {
                                 <input type="password" placeholder="contraseña" className="login__input" />
                             </div>
                             <div className="login__message-container">
-                                <p className="login__message">Todos los campos son requeridos</p>
+                                <p className="login__message">Todos los campos son obligatorios.</p>
                             </div>
 
                             <a href="#" className="button">Ingresar</a>
 
-                            <a href="#" className="login__forgot">¿Olvidó su contraseña?</a>
+                            <NavLink to="/send" className="login__forgot">¿Olvidó su contraseña?</NavLink>
                         </form>
                     </div>
 
@@ -39,7 +40,7 @@ export const Account = () => {
                             <h1 className="register__title">Registro</h1>
                         
                             <div className="register__message-container">
-                                <p className="register__message">Todos los campos son requeridos</p>
+                                <p className="register__message">Todos los campos son obligatorios.</p>
                             </div>
 
                             <div className="register__box">
@@ -50,6 +51,11 @@ export const Account = () => {
                             <div className="register__box">
                                 <i className='bx bx-user register__icon'></i>
                                 <input type="text" placeholder="primer apellido" className="register__input" />
+                            </div>
+
+                            <div className="register__box">
+                                <i className='bx bx-home register__icon'></i>
+                                <input type="text" placeholder="provincia" className="register__input" />
                             </div>
     
                             <div className="register__box">
