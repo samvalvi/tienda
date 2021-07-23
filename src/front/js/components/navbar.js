@@ -74,7 +74,7 @@ export const Navbar = () => {
                 </div>
 
                 <div className="nav__shop">
-                    <i className='bx bx-shopping-bag bx-flashing-hover'></i>
+                    <NavLink to="/shopbag" className="nav__link" id="nav-link" ><i className='bx bx-shopping-bag bx-flashing-hover'></i></NavLink>
                 </div>
             
             </nav>

@@ -10,6 +10,7 @@ import {Account} from './front/js/views/account'
 import {EditForm} from './front/js/components/edit-form'
 import {RecoverPassword} from './front/js/views/recover-password'
 import {SendCode} from './front/js/views/send-code'
+import {ShopBag} from './front/js/views/shop-bag'
 
 function App() {
   return (
@@ -23,6 +24,7 @@ function App() {
         <Route path="/settings" exact component={EditForm} />
         <Route path="/update" exact component={RecoverPassword} />
         <Route path="/send" exact component={SendCode} />
+        <Route path="/shopbag" exact component={ShopBag} />
       </Switch>
     </Router>
   );

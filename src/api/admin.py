@@ -1,6 +1,6 @@
 import os
 from flask_admin import Admin
-from api.models import db, Candela, Usuario, Administrador,Orden
+from api.models import db, Candela, Usuario, Orden
 from flask_admin.contrib.sqla import ModelView
 
 
@@ -11,5 +11,4 @@ def setup_admin(app):
 
     admin.add_view(ModelView(Candela, db.session))
     admin.add_view(ModelView(Usuario, db.session))
-    admin.add_view(ModelView(Administrador, db.session))
     admin.add_view(ModelView(Orden, db.session))
