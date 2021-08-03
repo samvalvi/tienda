@@ -7,12 +7,12 @@ import favoriteThree from '../../img/lafco-6.png'
 export const Featured = () => {
     return (
         <section className="featured section" id="featured">
-            <h2 className="section-title">Favoritos</h2>
+            <h2 className="section-title">Nuevo</h2>
 
             <div className="featured__container bd-grid">
 
                 <article className="product">
-                    <div className="product__featured">Favorito</div>
+                    <div className="product__featured">Nuevo</div>
                     <img src={favoriteOne} alt="" className="product__img"/>
                     <span className="product__name">Nombre</span>
                     <span className="product__price">₡ 3,000.00</span>
@@ -20,7 +20,7 @@ export const Featured = () => {
                 </article>
 
                 <article className="product">
-                    <div className="product__featured">Favorito</div>
+                    <div className="product__featured">Nuevo</div>
                     <img src={favoriteThree} alt="" className="product__img"/>
                     <span className="product__name">Nombre</span>
                     <span className="product__price">₡ 6,000.00</span>
@@ -28,7 +28,7 @@ export const Featured = () => {
                 </article>
 
                 <article className="product">
-                    <div className="product__featured">Favorito</div>
+                    <div className="product__featured">Nuevo</div>
                     <img src={favoriteTwo} alt="" className="product__img"/>
                     <span className="product__name">Nombre</span>
                     <span className="product__price">₡ 10,500.00</span>
