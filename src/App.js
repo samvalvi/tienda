@@ -11,6 +11,7 @@ import {EditForm} from './front/js/components/edit-form'
 import {RecoverPassword} from './front/js/views/recover-password'
 import {SendCode} from './front/js/views/send-code'
 import {ShopBag} from './front/js/views/shop-bag'
+import {Error404} from './front/js/views/error404'
 
 function App() {
   return (
@@ -18,13 +19,14 @@ function App() {
       <ScrollToTop />
       <Navbar />
       <Switch>
-        <Route path="/" exact component={Home}/>
-        <Route path="/shop" exact component={CandleStore} />
-        <Route path="/account" exact component={Account} />
-        <Route path="/settings" exact component={EditForm} />
-        <Route path="/update" exact component={RecoverPassword} />
-        <Route path="/send" exact component={SendCode} />
-        <Route path="/shopbag" exact component={ShopBag} />
+        <Route path="/" exact={true} component={Home}/>
+        <Route path="/shop" component={CandleStore} />
+        <Route path="/account" component={Account} />
+        <Route path="/settings" component={EditForm} />
+        <Route path="/update" component={RecoverPassword} />
+        <Route path="/send" component={SendCode} />
+        <Route path="/shopbag" component={ShopBag} />
+        <Route component={Error404} />
       </Switch>
     </Router>
   );
