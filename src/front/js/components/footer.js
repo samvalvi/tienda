@@ -22,7 +22,7 @@ export const Footer = () => {
                 <Link to="#" id="footer__social"><i className='bx-tada-hover bx bxl-whatsapp'></i></Link>
             </div>
         </div>
-        <p className="footer__copy"> &#169; 2021 ValviLabs. All rights reserved.</p>
+        <p className="footer__copy"> &#169; 2021 ValviLabs. Todos los derechos reservados.</p>
     </footer>
     )
 }

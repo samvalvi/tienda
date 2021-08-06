@@ -2,6 +2,8 @@ import React from 'react'
 
 import newCandle from '../../img/aery-7.png'
 
+import {Link} from 'react-router-dom'
+
 export const Product = () => {
     return (
         <section className="home" id="home">
@@ -15,7 +17,7 @@ export const Product = () => {
                     <h1 className="home__title">Nombre del Producto </h1>
                     <h1 className="home__subtitle">Precio ₡</h1>
                     <p className="home__description">Explore la tienda para encontrar más productos.</p>
-                    <a href="#" className="button">Comprar ahora</a>
+                    <Link to="/shop" className="button">Comprar ahora</Link>
                 </div>
             </div>
         </section>

@@ -30,7 +30,7 @@ export const Account = () => {
 
                             <a href="#" className="button">Ingresar</a>
 
-                            <NavLink to="/send" className="login__forgot">¿Olvidó su contraseña?</NavLink>
+                            <NavLink to="/send-code" className="login__forgot">¿Olvidó su contraseña?</NavLink>
                         </form>
                     </div>
 

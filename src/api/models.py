@@ -5,19 +5,23 @@ db = SQLAlchemy()
 
 class Candela(db.Model):
     id = db.Column(db.Integer, primary_key=True, nullable=False)
+    nombre = db.Column(db.String(200), nullable=False)
     color = db.Column(db.String(150), nullable=False)
     esencia = db.Column(db.String(150), nullable=False)
     modelo = db.Column(db.Integer, nullable=False)
     precio = db.Column(db.Numeric(asdecimal=False), nullable=False)
+    descripcion = db.Column(db.Text(), nullable=False)
     imagen = db.Column(db.String(225), nullable=False)
 
     def serialize(self):
         return {
             'id': self.id,
+            'nombre': self.nombre,
             'color': self.color,
             'esencia': self.esencia,
             'modelo': self.modelo,
             'precio': self.precio,
+            'descripcion': self.descripcion,
             'imagen': self.imagen
         }
 
@@ -45,7 +49,7 @@ class Usuario(db.Model):
 class Orden(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     usuario = db.Column(db.String(200), db.ForeignKey('usuario.email'))
-    productos = db.Column(db.Text)
+    productos = db.Column(db.Text())
     total = db.Column(db.Numeric(asdecimal=False))
     cantidad = db.Column(db.Integer)
 

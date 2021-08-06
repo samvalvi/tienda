@@ -588,6 +588,10 @@ img{
   margin-bottom: var(--mb-3);
 }
 
+.send__message{
+  padding: 1rem 0 0 0;
+}
+
 .send__code-message{
   font-size:var(--smaller-font-size);
   color: var(--dark-color);
@@ -648,6 +652,10 @@ img{
   display:flex;
   flex-direction: row;
   margin-bottom: var(--mb-3);
+}
+
+.recover__code-message{
+  padding: 1rem 0 0 0;
 }
 
 .recover__message{
@@ -892,6 +900,21 @@ img{
 
 .user__info{
   color: var(--dark-light);
+}
+
+/*NOT FOUND*/
+.error__container{
+  display: flex;
+  flex-direction: row;
+}
+
+.button__container{
+  padding: 1rem 0;
+}
+
+.not__found-image{
+  justify-content: center;
+  width: 100%;
 }
 
 /*MEDIA QUERIES*/

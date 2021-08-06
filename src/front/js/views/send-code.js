@@ -17,9 +17,6 @@ export const SendCode = () => {
 
                         <div className="send__code-image">
                             <img src={ForgotPass} alt="send code"/>
-                            <div className="license__container">
-                                <a className="license__message" href="https://storyset.com/online">Illustration by Storyset</a>
-                            </div>
                         </div>
 
                         <div className="dialog__box">

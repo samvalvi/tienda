@@ -16,9 +16,6 @@ export const RecoverPassword = () => {
 
                         <div className="recover__image">
                             <img src={AuthImg} alt="recover code"/>
-                            <div className="license__container">
-                                <a className="license__message" href="https://storyset.com/online">Illustration by Storyset</a>
-                            </div>
                         </div>
                         
                         <div className="dialog__box">
