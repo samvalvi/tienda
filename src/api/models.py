@@ -33,7 +33,6 @@ class Usuario(db.Model):
     provincia = db.Column(db.String(150), nullable=False)
     email = db.Column(db.String(200), unique=True, nullable=False)
     clave = db.Column(db.LargeBinary(256), nullable=False)
-    role = db.Column(db.String(100), nullable=False)
 
     def serialize(self):
         return {
@@ -42,7 +41,6 @@ class Usuario(db.Model):
             'primer_apellido': self.primer_apellido,
             'provincia': self.provincia,
             'email': self.email,
-            'role': self.role
         }
         
 

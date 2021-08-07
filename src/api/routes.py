@@ -28,12 +28,12 @@ def registrar():
         return jsonify({'msg': 'Debe indicar un nombre', 'status': 'failed'}), 400
     if not primer_apellido:
         return jsonify({'msg': 'Debe indicar un apellido', 'status': 'failed'}), 400
+    if not provincia:
+        return jsonify({'msg': 'Debe especificar la provincia', 'status': 'failed'}), 400
     if not correo:
         return jsonify({'msg': 'Debe indicar un correo electrónico', 'status': 'failed'}), 400
     if not clave:
         return jsonify({'msg': 'Debe crear una contraseña', 'status': 'failed'}), 400
-    if not provincia:
-            return jsonify({'msg': 'Debe especificar la provincia', 'status': 'failed'}), 400
     if not repetir_clave:
         return jsonify({'msg': 'Debe repetir su contraseña', 'status': 'failed'}), 400
     if clave != repetir_clave:
@@ -48,9 +48,9 @@ def registrar():
     usuario = Usuario()
     usuario.primer_nombre = primer_nombre
     usuario.primer_apellido = primer_apellido
+    usuario.provincia = provincia
     usuario.email = correo
     usuario.clave = password_hash
-    usuario.role = 'user'
     db.session.add(usuario)
     db.session.commit()
 
@@ -62,7 +62,7 @@ def registrar():
     return jsonify(response_body), 200
 
 
-@api.route('/login', methods=['POST'])
+@api.route('/acceder', methods=['POST'])
 def inicio_sesion():
     correo = request.json.get('correo', None)
     clave = request.json.get('clave', None)
@@ -86,7 +86,6 @@ def inicio_sesion():
             'msg': 'Sesión iniciada',
             'primer_nombre': usuario.primer_nombre,
             'access_token': token,
-            'role': usuario.role,
             'status': 'successful'
         }
         return jsonify(response_body), 200
@@ -223,7 +222,7 @@ def mostrar_orden():
     return jsonify(response_body)
 
 
-@api.route('/update', methods=['PUT'])
+@api.route('/actualizar-clave', methods=['PUT'])
 @jwt_required()
 def actualizar_clave():
     current_user_id = get_jwt_identity()
@@ -252,7 +251,7 @@ def actualizar_clave():
     return jsonify(response_body), 200
 
 
-@api.route('/recover')
+@api.route('/recuperar')
 def recuperar_clave():
     
     codigo = request.json.get('codigo', None)
