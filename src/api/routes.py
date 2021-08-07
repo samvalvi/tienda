@@ -128,9 +128,19 @@ def eliminar_usuario():
     usuario = Usuario.query.filter_by(id=current_user_id).first()
 
     clave = request.json.get('clave', None)
+    usuario_email = request.json.get('correo', None)
+    
+    if not usuario_email:
+        return jsonify({'msg': 'Debe especificar un correo', 'status': 'failed'}), 400
 
     if not clave:
         return jsonify({'msg': 'Debe ingresar la contraseña', 'status': 'failed'}), 400
+    
+    if usuario_email != usuario.email:
+        return jsonify({'msg': 'El correo no coincide con el usuario', 'status': 'failed'}), 400
+    
+    if clave != usuario.clave:
+        return jsonify({'msg': 'La contraseña es incorrecta', 'status': 'failed'}), 400
 
     clave_hash = bcrypt.hashpw(clave.encode(), bcrypt.gensalt())
     usuario_clave = bcrypt.checkpw(clave_hash, usuario.clave)
