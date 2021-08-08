@@ -161,20 +161,10 @@ def eliminar_usuario():
 
 
 @api.route('/productos', methods=['GET'])
-@jwt_required()
 def mostrar_productos():
-    current_user_id = get_jwt_identity()
-
-    if current_user_id:
-        producto = Candela.query.all()
-        if not producto:
-            return jsonify({'msg': 'No hay productos registrados', 'status': 'successful'}), 200
-
-        candela = list(map(lambda x: x.serialize(), producto))
-        return jsonify(candela), 200
-
-    if not current_user_id:
-        return jsonify({'msg': 'Para ingresar debe iniciar sesión', 'status': 'failed'}), 403
+    productos = Candela.query.all()
+    productos = list(map(lambda x: x.serialize(), productos))
+    return jsonify(productos), 200
 
 
 @api.route('/nuevaOrden', methods=['POST'])
