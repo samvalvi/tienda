@@ -1,41 +1,48 @@
-import React from 'react'
+import React, {useEffect, useState} from 'react'
 
-import favoriteOne from '../../img/favorite-3.png'
-import favoriteTwo from '../../img/new-10.png'
-import favoriteThree from '../../img/lafco-6.png'
+import { useDispatch, useSelector } from 'react-redux'
+import {getProductsAction} from "../redux/productDucks"
 
 export const Featured = () => {
+    const [result, setResult] = useState(true);
+
+    //Lee la acción
+    const dispatch = useDispatch();
+
+    useEffect(() => {
+        dispatch(getProductsAction());
+    },[dispatch]);
+
+    if(!dispatch) {
+        setResult(false);
+    }
+
+    //Devuelve el state
+    const productos = useSelector(store => store.product.products);
+    console.log(productos);
+
     return (
+
         <section className="featured section" id="featured">
             <h2 className="section-title">Nuevo</h2>
 
-            <div className="featured__container bd-grid">
-
-                <article className="product">
-                    <div className="product__featured">Nuevo</div>
-                    <img src={favoriteOne} alt="" className="product__img"/>
-                    <span className="product__name">Nombre</span>
-                    <span className="product__price">₡ 3,000.00</span>
-                    <a href="#" className="button-light">Agregar <i className='bx bx-right-arrow-alt button-icon'></i></a>
-                </article>
-
-                <article className="product">
-                    <div className="product__featured">Nuevo</div>
-                    <img src={favoriteThree} alt="" className="product__img"/>
-                    <span className="product__name">Nombre</span>
-                    <span className="product__price">₡ 6,000.00</span>
-                    <a href="#" className="button-light">Agregar <i className='bx bx-right-arrow-alt button-icon'></i></a>
-                </article>
-
-                <article className="product">
-                    <div className="product__featured">Nuevo</div>
-                    <img src={favoriteTwo} alt="" className="product__img"/>
-                    <span className="product__name">Nombre</span>
-                    <span className="product__price">₡ 10,500.00</span>
-                    <a href="#" className="button-light">Agregar <i className='bx bx-right-arrow-alt button-icon'></i></a>
-                </article>
-
-            </div>
+            { (result) ?
+                <div className="featured__container bd-grid">
+                       {productos.map((producto, index) => (
+                            <div className="product" key={index}>
+                                <div className="product__featured">Nuevo</div>
+                                <img src={producto.imagen} alt="" className="product__img"/>
+                                <span className="product__name">{producto.nombre}</span>
+                                <span className="product__price">₡{producto.precio}</span>
+                                <a href="#" className="button-light">Agregar <i className='bx bx-right-arrow-alt button-icon'></i></a>
+                            </div>
+                        ))}
+                </div>
+                :
+                <div className="featured__container bd-grid">
+                    <h3 className="loading__text">Loading...</h3>
+                </div>
+            }
         </section>
     )
 }

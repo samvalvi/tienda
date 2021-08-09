@@ -84,6 +84,11 @@ img{
   display: block;
 }
 
+/*LOADING*/
+.loading__text{
+  justify-self: center;
+}
+
 .section{
   padding: 5rem 0 2rem;
 }

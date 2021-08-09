@@ -25,10 +25,10 @@ export default function productReducer(state = initialData, action) {
 //Actions
 export const getProductsAction = () => async (dispatch, getState) => {
     try{
-        const resp = await axios.get('http://localhost:5000/api/productos?offset=0&limit=3');
+        const resp = await axios.get('http://localhost:5000/api/productos');
         dispatch({
             type: GET_PRODUCTS,
-            payload: resp
+            payload: resp.data
         })
     }catch(error){
         dispatch({
