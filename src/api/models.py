@@ -11,7 +11,8 @@ class Candela(db.Model):
     modelo = db.Column(db.Integer, nullable=False)
     precio = db.Column(db.Numeric(asdecimal=False), nullable=False)
     descripcion = db.Column(db.Text(), nullable=False)
-    imagen = db.Column(db.String(225), nullable=False)
+    img = db.Column(db.String(225))
+    nuevo = db.Column(db.Boolean)
 
     def serialize(self):
         return {
@@ -22,7 +23,8 @@ class Candela(db.Model):
             'modelo': self.modelo,
             'precio': self.precio,
             'descripcion': self.descripcion,
-            'imagen': self.imagen
+            'img': self.img,
+            'nuevo': self.nuevo
         }
 
 

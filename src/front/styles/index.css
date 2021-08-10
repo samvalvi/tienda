@@ -148,7 +148,7 @@ img{
     position: fixed;
     top: var(--header-height);
     left: -100%;
-    width: 57%;
+    width: 59%;
     height: 100vh;
     padding: 2rem;
     background: rgba(255,255,255,.3);
@@ -248,7 +248,6 @@ img{
 /*HOME*/
 .home{
   background-color: var(--background-color);
-  overflow: hidden;
 }
 
 .home__container{
@@ -262,10 +261,13 @@ img{
   align-self: center;
 }
 
+.home__data{
+  position: relative;  
+}
+
 .home__img{
   position: relative;
   top: 1rem;
-  max-width: intial;
 }
 
 .home__new{
@@ -286,7 +288,7 @@ img{
 }
 
 .home__description{
-  margin-bottom: var(--mb-6);
+  margin-bottom: var(--mb-2);
 }
 
 /*FEATURED*/
@@ -320,12 +322,14 @@ img{
   box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 6px -1px, rgba(0, 0, 0, 0.06) 0px 2px 4px -1px;
 }
 
-.product__img{
-  width: 210px;
-  margin-top: var(--mb-4);
-  margin-bottom: var(--mb-6);
+.product__img{ 
+  height: 87%;
+  width: 87%;
+  object-fit: contain;
+  padding-bottom: var(--mb-2);
   filter: drop-shadow(0 12px 8px rgba(0,0,0,.2))
 }
+
 
 .product__name, .product__price{
   font-size: var(--normal-font-size);
@@ -734,13 +738,6 @@ img{
   text-align: center;
 }
 
-/*STORE*/
-.product__img-store{
-  height: 100%;
-  width: 100%;
-  object-fit: contain;
-}
-
 /*LOGIN*/
 .login{
   display: grid;
@@ -932,10 +929,6 @@ img{
     width: 70%;
   }
 
-  .home__container{
-    height: 50vh;
-  }
-
   .collection__img{
     position:absolute;
     right: 10%;
@@ -959,6 +952,10 @@ img{
     row-gap: 2rem;
     flex-direction: column;
   }
+
+  .home__img{
+    object-fit: contain;
+  }
 }
 
 @media screen and (min-width:768px){
@@ -981,12 +978,9 @@ img{
 }
 
 @media screen and (max-width:990px){
-  .home__img{
-    width:50%;
-  }
-
-  .home__container{
-    height: 70vh;
+  .home__product{
+    display: flex;
+    flex-direction: column;
   }
 }
 
@@ -1051,7 +1045,7 @@ img{
   }
 
   .home__img{
-    width: 70%;
+    width: 85%;
     right:0;
     left:-3rem;
   }
@@ -1093,8 +1087,9 @@ img{
   }
 
   .home__img{
-    width: 90%;
+    width: 95%;
     right:0;
     left:-3rem;
   }
 }
+
