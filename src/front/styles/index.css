@@ -87,6 +87,7 @@ img{
 /*LOADING*/
 .loading__text{
   justify-self: center;
+  align-self: center;
 }
 
 .section{
@@ -251,7 +252,7 @@ img{
 }
 
 .home__container{
-  height: calc(70vh - var(--header-height));
+  height: calc(100vh - var(--header-height));
 }
 
 .home__product{
@@ -261,13 +262,11 @@ img{
   align-self: center;
 }
 
-.home__data{
-  position: relative;  
-}
-
 .home__img{
   position: relative;
-  top: 1rem;
+  top: 1.5rem;
+  max-width: initial;
+  width:65%;
 }
 
 .home__new{
@@ -944,7 +943,7 @@ img{
   .register__form{
     width: 100%;
   }
-
+  
 }
 
 @media screen and (max-width: 767px){
@@ -953,14 +952,25 @@ img{
     flex-direction: column;
   }
 
-  .home__img{
-    object-fit: contain;
+  .home__container{
+    height: calc(100vh - var(--header-height));
   }
 }
 
 @media screen and (min-width:768px){
   .account__container{
     justify-content: center;
+  }
+
+  .home__container{
+    height: calc(65vh - var(--header-height));
+  }
+
+  .home__img{
+    position: relative;
+    top: 1.5rem;
+    max-width: initial;
+    width:38%;
   }
 
   .login__form{
@@ -977,16 +987,13 @@ img{
   }
 }
 
-@media screen and (max-width:990px){
-  .home__product{
-    display: flex;
-    flex-direction: column;
-  }
-}
-
 @media screen and (min-width: 990px){
   body{
     margin: 0;
+  }
+
+  .home__container{
+    height: calc(60vh - var(--header-height));
   }
 
   .section{
@@ -1033,22 +1040,6 @@ img{
     margin: .5rem 0;
   }
 
-  .home__container{
-    height: 75vh;
-    grid-template-columns: max-content max-content;
-    justify-content: center;
-    align-items: center;
-  }
-
-  .home__product{
-    order:0;
-  }
-
-  .home__img{
-    width: 85%;
-    right:0;
-    left:-3rem;
-  }
 }
 
 @media screen and (min-width: 1202px) {
@@ -1061,11 +1052,6 @@ img{
   .bd-grid{
     margin-left:auto;
     margin-right:auto;
-  }
-
-  .home__container{
-    column-gap: 8rem;
-    width: 90%;
   }
 
   .collection__container{
@@ -1084,12 +1070,6 @@ img{
     justify-content: center;
     align-items: center;
     margin-left: 10rem;
-  }
-
-  .home__img{
-    width: 95%;
-    right:0;
-    left:-3rem;
   }
 }
 

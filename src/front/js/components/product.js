@@ -21,10 +21,12 @@ export const Product = () => {
             <div className="home__container bd-grid">
                 {(homeProduct) ?
                     homeProduct.map((item, index) => (
-                        <div className="home__product">
+                        <>
+                            
+                            <div className="home__product">
                                 <img src={item.img} alt="new-candle" className="home__img"/>
-                            
-                            
+                            </div>
+
                             <div className="home__data" id="home-data">
                                 <h1 className="home__title">{item.nombre}</h1>
                                 <h1 className="home__subtitle">Precio ₡{item.precio}</h1>
@@ -32,7 +34,7 @@ export const Product = () => {
                                 <Link to="/shop" className="button">Comprar ahora</Link>
                             </div>
 
-                        </div>
+                        </>
                     ))
 
                     :
