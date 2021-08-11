@@ -13,7 +13,7 @@ export default function registerUserReducer(state=initialData, action){
         case 'POST_USER_REGISTER':
             return {...state, status: action.payload}
         case 'ERROR':
-            return {...state, error: action.error}
+            return {...state}
         default:
             return state
     }
@@ -22,7 +22,7 @@ export default function registerUserReducer(state=initialData, action){
 //Actions
 export const postUserRegisterAction = (registerPrimerNombre, registerPrimerApellido, provincia, registerEmail, registerClave, repetir_Clave) => async (dispatch, getState) => {
     
-        await fetch(process.env.REACT_APP_API_URL + "api/registrar", {
+        await fetch(process.env.REACT_APP_API_URL + "api/registro", {
             method: "POST",
             mode: "cors",
             headers: {
@@ -46,8 +46,7 @@ export const postUserRegisterAction = (registerPrimerNombre, registerPrimerApell
               })
           }).catch(error => {
               dispatch({
-                  type: ERROR,
-                  payload: error
+                  type: ERROR
               })
           })
 }

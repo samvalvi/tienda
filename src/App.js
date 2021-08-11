@@ -6,7 +6,7 @@ import { ScrollToTop } from "./front/js/components/scroll-to-top";
 import { Navbar } from "./front/js/components/navbar";
 import Home from "./front/js/views/home";
 import { CandleStore } from "./front/js/views/candle-store";
-import { Account } from "./front/js/views/account";
+import Account from "./front/js/views/account";
 import { EditForm } from "./front/js/components/edit-form";
 import { RecoverPassword } from "./front/js/views/recover-password";
 import { SendCode } from "./front/js/views/send-code";

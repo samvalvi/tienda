@@ -1,13 +1,15 @@
 import React, {useState, useEffect} from 'react'
 
 import {NavLink} from 'react-router-dom'
+import {withRouter} from 'react-router-dom'
+
 import { useDispatch, useSelector } from 'react-redux'
 import { postUserRegisterAction } from '../redux/registerDucks'
 import { userLoginAction } from '../redux/loginDucks'
 
 import {Footer} from '../components/footer'
 
-export const Account = () => {
+const Account = (props) => {
     const [loginEmail, setLoginEmail] = useState('')
     const [loginClave, setLoginClave] = useState('')
     const [loginMsg, setLoginMsg] = useState('')
@@ -19,7 +21,6 @@ export const Account = () => {
     const [registerClave, setRegisterClave] = useState('')
     const [repetir_Clave, setRepetir_Clave] = useState('')
     const [registerMsg, setRegisterMsg] = useState('')
-    const [auth, setAuth] = useState(false)
 
     const dispatchRegister = useDispatch()
     const dispatcherLogin = useDispatch()
@@ -43,6 +44,7 @@ export const Account = () => {
     }
 
     const statusLogin = useSelector( (state) => state.login )
+    const auth = useSelector( (state) => state.login.auth )
 
     useEffect(() => {
         setLoginMsg(statusLogin.user.msg)
@@ -52,6 +54,12 @@ export const Account = () => {
         e.preventDefault();
         dispatcherLogin(userLoginAction( loginEmail, loginClave ))
     }
+
+    useEffect(() => {
+        if(auth){
+            this.props.history.push('/')
+        }
+    },[auth])
 
     return (
         <main className="l-main">
@@ -140,3 +148,5 @@ export const Account = () => {
         </main>
     )
 }
+
+export default withRouter(Account)

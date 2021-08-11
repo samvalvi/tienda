@@ -1,10 +1,12 @@
-import React,{useState, useEffect} from 'react';
+import React,{useState, useEffect, useContext} from 'react';
 
 import {NavLink} from 'react-router-dom'
+import {useSelector} from 'react-redux'
 
 export const Navbar = () => {
     const [active, setActive] = useState(false);
     const [showMenu, setShowMenu] = useState(false);
+    const user = useSelector(state => state.login);
 
     //Cambia el background del navbar
     const changeBackground = () => {

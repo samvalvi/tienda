@@ -16,7 +16,7 @@ def hello():
     return jsonify(response_body), 200
 
 
-@api.route('/registrar', methods=['POST'])
+@api.route('/registro', methods=['POST'])
 def registrar():
     
     request_body = request.get_json()
@@ -70,27 +70,23 @@ def registrar():
 def inicio_sesion():
     request_body = request.get_json()
 
-    if 'correo' not in request_body or 'clave' not in request_body:
+    if 'correo' not in request_body or request_body['correo'].split() == 0 or 'clave' not in request_body or request_body['clave'].split() == 0:
         return jsonify({'msg': 'Todos los campos son requeridos', 'status': 'failed'}), 400
 
-    usuario = Usuario.query.filter_by(email=correo).first()
+    usuario = Usuario.query.filter_by(email=request_body['correo']).first()
 
     if not usuario:
         return jsonify({'msg': 'El usuario no se encuentra registrado', 'status': 'failed'}), 404
 
-    password = bcrypt.checkpw(clave.encode(), usuario.clave)
+    password = bcrypt.checkpw(request_body['clave'].encode(), usuario.clave)
 
-    if correo != usuario.email or password is not True:
+    if request_body['correo'] != usuario.email or password is not True:
         return jsonify({'msg': 'El email o la contraseña no coinciden, vuelva a intentarlo', 'status': 'failed'}), 400
 
-    if correo == usuario.email and password:
+    if request_body['correo'] == usuario.email and password:
         token = create_access_token(identity=usuario.id)
         response_body = {
-            'msg': 'Sesión iniciada',
             'primer_nombre': usuario.primer_nombre,
-            'primer_apellido': usuario.primer_apellido,
-            'provincia': usuario.provincia,
-            'email': usuario.email,
             'access_token': token,
             'status': 'successful'
         }
