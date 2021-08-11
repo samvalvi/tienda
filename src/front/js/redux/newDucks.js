@@ -25,7 +25,7 @@ export default function newProductReducer(state = initialData, action) {
 //Actions
 export const getNewProductsAction = () => async (dispatch, getState) => {
     try{
-        const resp = await axios.get('http://localhost:5000/api/productos')
+        const resp = await axios.get(process.env.REACT_APP_API_URL + '/api/productos')
         const products = resp.data.filter(product => product.nuevo)
 
         dispatch({

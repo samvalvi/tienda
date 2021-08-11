@@ -25,7 +25,7 @@ export default function homeProductReducer(state = initialData, action) {
 //Actions
 export const getHomeProductAction = () => async (dispatch, getState) => {
     try{
-        const resp = await axios.get('http://localhost:5000/api/productos');
+        const resp = await axios.get(process.env.REACT_APP_API_URL + '/api/productos');
         const home__img = resp.data.filter(product => product.id === 3);
 
         dispatch({

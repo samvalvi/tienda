@@ -1,3 +1,4 @@
+from werkzeug.wrappers import UserAgentMixin
 import bcrypt
 from flask import Flask, request, jsonify, url_for, Blueprint, redirect
 from api.models import db, Candela, Usuario, Orden
@@ -24,17 +25,17 @@ def registrar():
     clave = request.json.get('clave', None)
     repetir_clave = request.json.get('repetir_clave', None)
 
-    if not primer_nombre:
+    if primer_nombre is None:
         return jsonify({'msg': 'Debe indicar un nombre', 'status': 'failed'}), 400
-    if not primer_apellido:
+    if primer_apellido is None:
         return jsonify({'msg': 'Debe indicar un apellido', 'status': 'failed'}), 400
-    if not provincia:
+    if provincia is None:
         return jsonify({'msg': 'Debe especificar la provincia', 'status': 'failed'}), 400
-    if not correo:
+    if correo is None:
         return jsonify({'msg': 'Debe indicar un correo electrónico', 'status': 'failed'}), 400
-    if not clave:
+    if clave is None:
         return jsonify({'msg': 'Debe crear una contraseña', 'status': 'failed'}), 400
-    if not repetir_clave:
+    if repetir_clave is None:
         return jsonify({'msg': 'Debe repetir su contraseña', 'status': 'failed'}), 400
     if clave != repetir_clave:
         return jsonify({'msg': 'Las contraseñas no coinciden', 'status': 'failed'}), 400
@@ -85,6 +86,9 @@ def inicio_sesion():
         response_body = {
             'msg': 'Sesión iniciada',
             'primer_nombre': usuario.primer_nombre,
+            'primer_apellido': usuario.primer_apellido,
+            'provincia': usuario.provincia,
+            'email': usuario.email,
             'access_token': token,
             'status': 'successful'
         }

@@ -1,5 +1,8 @@
 import React, {useState} from 'react'
+
 import {NavLink} from 'react-router-dom'
+import { useDispatch, useSelector } from 'react-redux'
+import { postUserRegisterAction } from '../redux/registerDucks'
 
 import {Footer} from '../components/footer'
 
@@ -12,14 +15,28 @@ export const Account = () => {
     const [registerPrimerApellido, setRegisterPrimerApellido] = useState('')
     const [provincia, setProvincia] = useState('')
     const [registerEmail, setRegisterEmail] = useState('')
-    const [clave, setClave] = useState('')
-    const [repetir_clave, setRepetir_clave] = useState('')
+    const [registerClave, setRegisterClave] = useState('')
+    const [repetir_Clave, setRepetir_Clave] = useState('')
     const [registerError, setRegisterError] = useState(false)
+    const [registerMsg, setRegisterMsg] = useState('')
+
+    const dispatchRegister = useDispatch()
 
     const handleSubmitLogin = (e) => {
         e.preventDefault();
+    }
 
+    const handleSubmitRegister = (e) => {
+        e.preventDefault();
+        
+        dispatchRegister(postUserRegisterAction( registerPrimerNombre, registerPrimerApellido, provincia, registerEmail, registerClave, repetir_Clave ))
+    }
 
+    const registerState = useSelector( (state) => state.registration.registration )
+
+    if (registerState.status === 'failed') {
+        setRegisterError(true)
+        setRegisterMsg(registerState.msg)
     }
 
 
@@ -31,7 +48,7 @@ export const Account = () => {
                 <div className="account__container bd-grid">
                     
                     <div className="login__form">
-                        <form action="" onSubmit={()=> handleSubmitLogin(Event)}>
+                        <form method="post">
                             <h1 className="login__title">Acceso</h1>
                             {
                                 (loginError) ? <p className="login__error">Uno o más campos están vacíos.</p> : null
@@ -49,15 +66,15 @@ export const Account = () => {
                                 <p className="login__message">*Todos los campos son obligatorios.</p>
                             </div>
 
-                            <a href="#" className="button">Ingresar</a>
+                            <NavLink to="#" className="button" type="submit">Ingresar</NavLink>
 
-                            <NavLink to="/send-code" className="login__forgot">¿Olvidó su contraseña?</NavLink>
+                            <NavLink to="/send-code" className="login__forgot" onClick={e => handleSubmitLogin(e)}>¿Olvidó su contraseña?</NavLink>
                         </form>
                     </div>
 
 
                     <div className="register__form">
-                        <form action="">
+                        <form method="post" >
                             <h1 className="register__title">Registro</h1>
                         
                             <div className="register__message-container">
@@ -66,39 +83,39 @@ export const Account = () => {
 
                             <div className="register__box">
                                 <i className='bx bx-user register__icon'></i>
-                                <input type="text" placeholder="primer nombre" className="register__input" />
+                                <input type="text" placeholder="primer nombre" className="register__input" onChange={(e)=> setRegisterPrimerNombre(e.target.value)} value={registerPrimerNombre} required />
                             </div>
 
                             <div className="register__box">
                                 <i className='bx bx-user register__icon'></i>
-                                <input type="text" placeholder="primer apellido" className="register__input" />
+                                <input type="text" placeholder="primer apellido" className="register__input" onChange={(e)=> setRegisterPrimerApellido(e.target.value)} value={registerPrimerApellido}/>
                             </div>
 
                             <div className="register__box">
                                 <i className='bx bx-home register__icon'></i>
-                                <input type="text" placeholder="provincia" className="register__input" />
+                                <input type="text" placeholder="provincia" className="register__input" onChange={(e)=> setProvincia(e.target.value)} value={provincia} />
                             </div>
     
                             <div className="register__box">
                                 <i className='bx bx-at register__icon'></i>
-                                <input type="text" placeholder="email" className="register__input" />
+                                <input type="text" placeholder="email" className="register__input" onChange={(e)=> setRegisterEmail(e.target.value)} value={registerEmail} />
                             </div>
 
                             <div className="register__box">
                                 <i className='bx bx-lock-alt register__icon'></i>
-                                <input type="password" placeholder="contraseña" className="register__input" />
+                                <input type="password" placeholder="contraseña" className="register__input" onChange={(e)=> setRegisterClave(e.target.value)} value={registerClave} />
                             </div>
 
                             <div className="register__box">
                                 <i className='bx bx-lock-alt register__icon'></i>
-                                <input type="password" placeholder="repetir contraseña" className="register__input" />
+                                <input type="password" placeholder="repetir contraseña" className="register__input" onChange={(e)=> setRepetir_Clave(e.target.value)} value={repetir_Clave} />
                             </div>
                             
                             {
-                                (registerError) ? <p className="register__error">Uno o más campos están vacíos.</p> : null
+                                (registerError) ? <p className="register__error">{registerMsg}</p> : null
                             }
 
-                            <a href="#" className="button">Crear cuenta</a>
+                            <NavLink to="#" className="button" onClick={e => handleSubmitRegister(e)}>Crear cuenta</NavLink>
 
                         </form>
                     </div>
