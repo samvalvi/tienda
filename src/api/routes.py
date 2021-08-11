@@ -18,39 +18,42 @@ def hello():
 
 @api.route('/registrar', methods=['POST'])
 def registrar():
-    primer_nombre = request.json.get('primer_nombre', None)
-    primer_apellido = request.json.get('primer_apellido', None)
-    provincia = request.json.get('provincia', None)
-    correo = request.json.get('correo', None)
-    clave = request.json.get('clave', None)
-    repetir_clave = request.json.get('repetir_clave', None)
+    
+    request_body = request.get_json()
 
-    if primer_nombre is None:
+    if 'primer_nombre' not in request_body or request_body['primer_nombre'].strip() == "":
         return jsonify({'msg': 'Debe indicar un nombre', 'status': 'failed'}), 400
-    if primer_apellido is None:
+    
+    if 'primer_apellido' not in request_body or request_body['primer_apellido'].strip() == "":
         return jsonify({'msg': 'Debe indicar un apellido', 'status': 'failed'}), 400
-    if provincia is None:
+    
+    if 'provincia' not in request_body or request_body['provincia'].strip() == "":
         return jsonify({'msg': 'Debe especificar la provincia', 'status': 'failed'}), 400
-    if correo is None:
+    
+    if 'correo' not in request_body or request_body['correo'].strip() == "":
         return jsonify({'msg': 'Debe indicar un correo electrónico', 'status': 'failed'}), 400
-    if clave is None:
+    
+    if 'clave' not in request_body or request_body['clave'].strip() == "":
         return jsonify({'msg': 'Debe crear una contraseña', 'status': 'failed'}), 400
-    if repetir_clave is None:
+    
+    if 'repetir_clave' not in request_body or request_body['repetir_clave'].strip() == "":
         return jsonify({'msg': 'Debe repetir su contraseña', 'status': 'failed'}), 400
-    if clave != repetir_clave:
+    
+    if request_body['clave'] != request_body['repetir_clave']:
         return jsonify({'msg': 'Las contraseñas no coinciden', 'status': 'failed'}), 400
 
-    usuario = Usuario.query.filter_by(email=correo).first()
+    usuario = Usuario.query.filter_by(email=request_body['correo']).first()
+    
     if usuario:
         return jsonify({'msg': 'El usuario ya se encuentra registrado', 'status': 'successful'}), 200
 
-    password_hash = bcrypt.hashpw(clave.encode(), bcrypt.gensalt())
+    password_hash = bcrypt.hashpw(request_body['clave'].encode(), bcrypt.gensalt())
 
     usuario = Usuario()
-    usuario.primer_nombre = primer_nombre
-    usuario.primer_apellido = primer_apellido
-    usuario.provincia = provincia
-    usuario.email = correo
+    usuario.primer_nombre = request_body['primer_nombre']
+    usuario.primer_apellido = request_body['primer_apellido']
+    usuario.provincia = request_body['provincia']
+    usuario.email = request_body['correo']
     usuario.clave = password_hash
     db.session.add(usuario)
     db.session.commit()
@@ -63,12 +66,11 @@ def registrar():
     return jsonify(response_body), 200
 
 
-@api.route('/acceder', methods=['POST'])
+@api.route('/acceso', methods=['POST'])
 def inicio_sesion():
-    correo = request.json.get('correo', None)
-    clave = request.json.get('clave', None)
+    request_body = request.get_json()
 
-    if not correo or not clave:
+    if 'correo' not in request_body or 'clave' not in request_body:
         return jsonify({'msg': 'Todos los campos son requeridos', 'status': 'failed'}), 400
 
     usuario = Usuario.query.filter_by(email=correo).first()

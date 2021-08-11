@@ -1,15 +1,16 @@
-import React, {useState} from 'react'
+import React, {useState, useEffect} from 'react'
 
 import {NavLink} from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { postUserRegisterAction } from '../redux/registerDucks'
+import { userLoginAction } from '../redux/loginDucks'
 
 import {Footer} from '../components/footer'
 
 export const Account = () => {
     const [loginEmail, setLoginEmail] = useState('')
     const [loginClave, setLoginClave] = useState('')
-    const [loginError, setLoginError] = useState(false)
+    const [loginMsg, setLoginMsg] = useState('')
 
     const [registerPrimerNombre, setRegisterPrimerNombre] = useState('')
     const [registerPrimerApellido, setRegisterPrimerApellido] = useState('')
@@ -17,28 +18,40 @@ export const Account = () => {
     const [registerEmail, setRegisterEmail] = useState('')
     const [registerClave, setRegisterClave] = useState('')
     const [repetir_Clave, setRepetir_Clave] = useState('')
-    const [registerError, setRegisterError] = useState(false)
     const [registerMsg, setRegisterMsg] = useState('')
+    const [auth, setAuth] = useState(false)
 
     const dispatchRegister = useDispatch()
+    const dispatcherLogin = useDispatch()
 
-    const handleSubmitLogin = (e) => {
-        e.preventDefault();
-    }
+
+    const statusRegister = useSelector( (state) => state.registration.status )
+
+    useEffect(() => {
+        setRegisterMsg(statusRegister.msg)
+    }, [statusRegister])
 
     const handleSubmitRegister = (e) => {
         e.preventDefault();
-        
         dispatchRegister(postUserRegisterAction( registerPrimerNombre, registerPrimerApellido, provincia, registerEmail, registerClave, repetir_Clave ))
+        setRegisterPrimerNombre('')
+        setRegisterPrimerApellido('')
+        setProvincia('')
+        setRegisterEmail('')
+        setRegisterClave('')
+        setRepetir_Clave('')
     }
 
-    const registerState = useSelector( (state) => state.registration.registration )
+    const statusLogin = useSelector( (state) => state.login )
 
-    if (registerState.status === 'failed') {
-        setRegisterError(true)
-        setRegisterMsg(registerState.msg)
+    useEffect(() => {
+        setLoginMsg(statusLogin.user.msg)
+    },[statusLogin])
+
+    const handleSubmitLogin = (e) => {
+        e.preventDefault();
+        dispatcherLogin(userLoginAction( loginEmail, loginClave ))
     }
-
 
     return (
         <main className="l-main">
@@ -51,7 +64,7 @@ export const Account = () => {
                         <form method="post">
                             <h1 className="login__title">Acceso</h1>
                             {
-                                (loginError) ? <p className="login__error">Uno o más campos están vacíos.</p> : null
+                                (loginMsg) ? <p className="login__error">Uno o más campos están vacíos.</p> : null
                             }
                             <div className="login__box">
                                 <i className='bx bx-user login__icon'></i>
@@ -112,7 +125,7 @@ export const Account = () => {
                             </div>
                             
                             {
-                                (registerError) ? <p className="register__error">{registerMsg}</p> : null
+                                (registerMsg) ? <p className="register__error">{registerMsg}</p> : null
                             }
 
                             <NavLink to="#" className="button" onClick={e => handleSubmitRegister(e)}>Crear cuenta</NavLink>

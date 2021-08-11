@@ -6,13 +6,15 @@ import productReducer from './productDucks';
 import homeProductReducer from './homeDucks';
 import shopProductsReducer from './shopDucks';
 import registerUserReducer from './registerDucks';
+import userLoginReducer from './loginDucks';
 
 const rootReducer = combineReducers({
     product: productReducer,
     newProduct: newProductReducer,
     homeProduct: homeProductReducer,
     shopProducts: shopProductsReducer,
-    registration: registerUserReducer
+    registration: registerUserReducer,
+    login: userLoginReducer
 })
 
 //Configura la extensión de Chrome
