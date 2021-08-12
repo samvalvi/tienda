@@ -1,7 +1,8 @@
 //Constantes
 const initialData = {
     user: {},
-    logged: false
+    logged: false,
+    auth: false
 }
 
 //Types
@@ -12,7 +13,7 @@ const ERROR = 'ERROR'
 export default function userLoginReducer(state = initialData, action) {
     switch (action.type) {
         case LOGIN_SUCCESSFUL:
-            return {...state, user: action.payload, logged: true}
+            return {...state, user: action.payload, logged: true, auth: true}
         case ERROR:
             return {...state}
         default:
@@ -23,7 +24,6 @@ export default function userLoginReducer(state = initialData, action) {
 
 //Actions
 export const userLoginAction = (username, password) => async (dispatch, getState) => {
-    try{
         await fetch(process.env.REACT_APP_API_URL + 'api/acceso', {
             method: "POST",
             mode: "cors",
@@ -35,17 +35,8 @@ export const userLoginAction = (username, password) => async (dispatch, getState
                 correo: username,
                 clave: password
             })
-        })  
+        })
         .then(response => response.json())
-        .then(data => {
-            dispatch({
-                type: LOGIN_SUCCESSFUL,
-                payload: data
-            })
-        })
-    }catch(error){
-        dispatch({
-            type: ERROR
-        })
+        .then(data => dispatch({ type: LOGIN_SUCCESSFUL, payload: data}))
+        .catch(error => dispatch({ type: ERROR}))  
     }
-}

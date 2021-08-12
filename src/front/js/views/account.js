@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from 'react'
 
 import {NavLink} from 'react-router-dom'
-import {withRouter} from 'react-router-dom'
+import {Redirect} from 'react-router-dom'
 
 import { useDispatch, useSelector } from 'react-redux'
 import { postUserRegisterAction } from '../redux/registerDucks'
@@ -9,7 +9,7 @@ import { userLoginAction } from '../redux/loginDucks'
 
 import {Footer} from '../components/footer'
 
-const Account = (props) => {
+export const Account = () => {
     const [loginEmail, setLoginEmail] = useState('')
     const [loginClave, setLoginClave] = useState('')
     const [loginMsg, setLoginMsg] = useState('')
@@ -43,12 +43,13 @@ const Account = (props) => {
         setRepetir_Clave('')
     }
 
-    const statusLogin = useSelector( (state) => state.login )
+    const statusLogin = useSelector( (state) => state.login.user )
     const auth = useSelector( (state) => state.login.auth )
+    const msgLogin = useSelector( (state) => state.login.msg )
 
     useEffect(() => {
-        setLoginMsg(statusLogin.user.msg)
-    },[statusLogin])
+        setLoginMsg(msgLogin)
+    },[msgLogin])
 
     const handleSubmitLogin = (e) => {
         e.preventDefault();
@@ -56,10 +57,8 @@ const Account = (props) => {
     }
 
     useEffect(() => {
-        if(auth){
-            this.props.history.push('/')
-        }
-    },[auth])
+
+    }, [auth])
 
     return (
         <main className="l-main">
@@ -72,7 +71,7 @@ const Account = (props) => {
                         <form method="post">
                             <h1 className="login__title">Acceso</h1>
                             {
-                                (loginMsg) ? <p className="login__error">Uno o más campos están vacíos.</p> : null
+                                (loginMsg) ? <p className="login__error">{loginMsg}</p> : null
                             }
                             <div className="login__box">
                                 <i className='bx bx-user login__icon'></i>
@@ -87,10 +86,11 @@ const Account = (props) => {
                                 <p className="login__message">*Todos los campos son obligatorios.</p>
                             </div>
 
-                            <NavLink to="#" className="button" type="submit">Ingresar</NavLink>
+                            <NavLink to="#" className="button" onClick={e => handleSubmitLogin(e)}>Ingresar</NavLink>
 
-                            <NavLink to="/send-code" className="login__forgot" onClick={e => handleSubmitLogin(e)}>¿Olvidó su contraseña?</NavLink>
+                            <NavLink to="/send-code" className="login__forgot" >¿Olvidó su contraseña?</NavLink>
                         </form>
+                        {(auth) ? <Redirect to="/" /> : null}
                     </div>
 
 
@@ -148,5 +148,3 @@ const Account = (props) => {
         </main>
     )
 }
-
-export default withRouter(Account)

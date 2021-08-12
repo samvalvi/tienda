@@ -1,4 +1,4 @@
-import React,{useState, useEffect, useContext} from 'react';
+import React,{useState, useEffect} from 'react';
 
 import {NavLink} from 'react-router-dom'
 import {useSelector} from 'react-redux'
@@ -6,7 +6,11 @@ import {useSelector} from 'react-redux'
 export const Navbar = () => {
     const [active, setActive] = useState(false);
     const [showMenu, setShowMenu] = useState(false);
-    const user = useSelector(state => state.login);
+    const [isLoggedIn, setIsLoggedIn] = useState(false);
+    const [name, setName] = useState('');
+
+    const user = useSelector(state => state.login.logged);
+    const username = useSelector(state => state.login.user);
 
     //Cambia el background del navbar
     const changeBackground = () => {
@@ -37,9 +41,13 @@ export const Navbar = () => {
     }
 
     useEffect(()=> {
-
-
-    }, [])
+        if(user){
+            setIsLoggedIn(true);
+        }
+        if(username) {
+            setName(username.primer_nombre);
+        }
+    }, [user, username])
 
     return (
 
@@ -53,26 +61,38 @@ export const Navbar = () => {
                 <p className="nav__logo">APP__DEVELOP_VELAS</p>
 
                 <div className={(showMenu) ? "nav__menu show" : "nav__menu"} id="nav-menu">
-                    <ul className="nav__list">
-                        <li className="nav__item">
-                            <NavLink exact to="/" className="nav__link" id="nav-link" onClick={(e)=> LinkAction(e.target.id)}>Inicio</NavLink>
-                        </li>
-                        <li className="nav__item">
-                            <NavLink to="/shop" className="nav__link" id="nav-link" onClick={(e)=> LinkAction(e.target.id)}>Tienda</NavLink>
-                        </li>
-                        <li className="nav__item"><NavLink to="/account" className="nav__link" id="nav-link" onClick={(e)=> LinkAction(e.target.id)}>Cuenta</NavLink></li>
-                        <li className="nav__item dropdown">
-                            <NavLink to="#" className="dropdown__link">Ajustes <i className='bx bx-chevron-down dropdown__icon'></i></NavLink>
+                    {(isLoggedIn) ?
+                        <ul className="nav__list">
+                            <li className="nav__item">
+                                <NavLink exact to="/" className="nav__link" id="nav-link" onClick={(e)=> LinkAction(e.target.id)}>Inicio</NavLink>
+                            </li>
+                            <li className="nav__item">
+                                <NavLink to="/shop" className="nav__link" id="nav-link" onClick={(e)=> LinkAction(e.target.id)}>Tienda</NavLink>
+                            </li>
+                            <li className="nav__item"><p className="nav__link" id="nav-link" >{name}</p></li>
+                            <li className="nav__item dropdown">
+                                <NavLink to="#" className="dropdown__link">Ajustes <i className='bx bx-chevron-down dropdown__icon'></i></NavLink>
                                     
-                            <ul className="dropdown__menu">
-                                <li className="dropdown__item">
-                                    <NavLink to="/settings" className="nav__link" id="nav-link" onClick={(e)=> LinkAction(e.target.id)}>Perfil</NavLink>
+                                <ul className="dropdown__menu">
+                                    <li className="dropdown__item">
+                                        <NavLink to="/settings" className="nav__link" id="nav-link" onClick={(e)=> LinkAction(e.target.id)}>Perfil</NavLink>
                                     
-                                </li>
-                            </ul>
-                        </li>
-                        <li className="nav__item"><NavLink to="#" className="nav__link">Cerrar sesión</NavLink></li>
-                    </ul>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li className="nav__item"><NavLink to="#" className="nav__link">Cerrar sesión</NavLink></li>
+                        </ul>
+                        :
+                        <ul className="nav__list">
+                            <li className="nav__item">
+                                <NavLink exact to="/" className="nav__link" id="nav-link" onClick={(e)=> LinkAction(e.target.id)}>Inicio</NavLink>
+                            </li>
+                            <li className="nav__item">
+                                <NavLink to="/shop" className="nav__link" id="nav-link" onClick={(e)=> LinkAction(e.target.id)}>Tienda</NavLink>
+                            </li>
+                            <li className="nav__item"><NavLink to="/account" className="nav__link" id="nav-link" onClick={(e)=> LinkAction(e.target.id)}>Cuenta</NavLink></li>
+                        </ul>
+                    }
                 </div>
 
                 <div className="nav__shop">
