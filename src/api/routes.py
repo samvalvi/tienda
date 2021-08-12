@@ -70,12 +70,15 @@ def registrar():
 def inicio_sesion():
     request_body = request.get_json()
 
-    if 'correo' not in request_body or request_body['correo'].split() == 0 or 'clave' not in request_body or request_body['clave'].split() == 0:
-        return jsonify({'msg': 'Todos los campos son requeridos', 'status': 'failed'}), 400
+    if 'correo' not in request_body or request_body['correo'].strip() == "": 
+        return jsonify({'msg': 'Debe ingresar su email', 'status': 'failed'}), 400
+    
+    if 'clave' not in request_body or request_body['clave'].strip() == "":
+        return jsonify({'msg': 'Debe ingresar su contraseña', 'status': 'failed'}), 400
 
     usuario = Usuario.query.filter_by(email=request_body['correo']).first()
 
-    if not usuario:
+    if usuario is None:
         return jsonify({'msg': 'El usuario no se encuentra registrado', 'status': 'failed'}), 404
 
     password = bcrypt.checkpw(request_body['clave'].encode(), usuario.clave)

@@ -10,6 +10,8 @@ import { userLoginAction } from '../redux/loginDucks'
 import {Footer} from '../components/footer'
 
 export const Account = () => {
+    const [auth, setAuth] = useState(false)
+
     const [loginEmail, setLoginEmail] = useState('')
     const [loginClave, setLoginClave] = useState('')
     const [loginMsg, setLoginMsg] = useState('')
@@ -44,12 +46,7 @@ export const Account = () => {
     }
 
     const statusLogin = useSelector( (state) => state.login.user )
-    const auth = useSelector( (state) => state.login.auth )
-    const msgLogin = useSelector( (state) => state.login.msg )
 
-    useEffect(() => {
-        setLoginMsg(msgLogin)
-    },[msgLogin])
 
     const handleSubmitLogin = (e) => {
         e.preventDefault();
@@ -57,8 +54,14 @@ export const Account = () => {
     }
 
     useEffect(() => {
+        if(statusLogin.status === 'successful') {
+            setAuth(true)
+        }else{
+            setAuth(false)
+            setLoginMsg(statusLogin.msg)
+        }
+    }, [statusLogin])
 
-    }, [auth])
 
     return (
         <main className="l-main">
