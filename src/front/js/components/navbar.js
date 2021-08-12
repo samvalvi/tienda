@@ -9,7 +9,7 @@ export const Navbar = () => {
     const [isLoggedIn, setIsLoggedIn] = useState(false);
     const [name, setName] = useState('');
 
-    const user = useSelector(state => state.login.user);
+    const data = useSelector(state => state.login.user);
 
     //Cambia el background del navbar
     const changeBackground = () => {
@@ -40,11 +40,11 @@ export const Navbar = () => {
     }
 
     useEffect(()=> {
-        if(user.status === 'successful'){
+        if(data.status === 'successful'){
             setIsLoggedIn(true);
-            setName(user.primer_nombre);
+            setName(data.primer_nombre);
         }
-    }, [user])
+    }, [data])
 
     return (
 
