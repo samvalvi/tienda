@@ -14,14 +14,13 @@ import { ShopBag } from "./front/js/views/shop-bag";
 import { Error404 } from "./front/js/views/error404";
 
 import { Provider } from "react-redux";
-import { store, persistor } from "./front/js/redux/store";
-import {PersistGate} from "redux-persist/integration/react";
+import { generateStore } from "./front/js/redux/store";
 
 function App() {
-
+  const store = generateStore();
+  
   return (
     <Provider store={store}>
-      <PersistGate loading={null} persistor={persistor}>
       <Router>
         <ScrollToTop />
         <Navbar />
@@ -36,7 +35,6 @@ function App() {
           <Route component={Error404} />
         </Switch>
       </Router>
-      </PersistGate>
     </Provider>
   );
 }

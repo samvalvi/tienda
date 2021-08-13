@@ -279,4 +279,3 @@ def recuperar_clave():
     }
 
     return jsonify(response_body), 200
-    

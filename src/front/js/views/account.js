@@ -62,7 +62,6 @@ export const Account = () => {
         }
     }, [statusLogin])
 
-
     return (
         <main className="l-main">
             <section className="account section">

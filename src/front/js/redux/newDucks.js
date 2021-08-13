@@ -1,5 +1,3 @@
-import axios from 'axios';
-
 //Constantes
 const initialData = {
     newProducts: [],
@@ -24,19 +22,26 @@ export default function newProductReducer(state = initialData, action) {
 
 //Actions
 export const getNewProductsAction = () => async (dispatch, getState) => {
-    try{
-        const resp = await axios.get(process.env.REACT_APP_API_URL + '/api/productos')
-        const products = resp.data.filter(product => product.nuevo)
-
-        dispatch({
+    await fetch (process.env.REACT_APP_API_URL + '/api/productos', {
+        method: 'GET',
+        mode: "cors",
+        headers: {
+            "Accept": "application/json",
+            "Content-Type": "application/json",
+            "Access-Allow-Control-Origin": "*"
+            }
+    })
+    .then(response => response.json())
+    .then(
+        data => dispatch({
             type: GET_NEW_PRODUCTS,
-            payload: products
+            payload: data.filter(product => product.nuevo)
         })
-
-    }catch(error){
+    )
+    .catch(error =>
         dispatch({
             type: ERROR, 
             payload: error.message
         })
-    }
+    )
 }

@@ -1,9 +1,6 @@
-import axios from 'axios';
-
 //Constantes
 const initialData = {
     homeProduct: '',
-    error: ''
 }
 
 //Types
@@ -16,7 +13,7 @@ export default function homeProductReducer(state = initialData, action) {
         case 'GET_HOME_PRODUCT':
             return {...state, homeProduct: action.payload}
         case 'ERROR':
-            return {...state, error: action.payload}
+            return {...state}
         default:
             return state
     }
@@ -24,18 +21,20 @@ export default function homeProductReducer(state = initialData, action) {
 
 //Actions
 export const getHomeProductAction = () => async (dispatch, getState) => {
-    try{
-        const resp = await axios.get(process.env.REACT_APP_API_URL + '/api/productos');
-        const home__img = resp.data.filter(product => product.id === 3);
-
-        dispatch({
-            type: GET_HOME_PRODUCT, 
-            payload: home__img
+    
+        await fetch(process.env.REACT_APP_API_URL + '/api/productos', {
+            method: "GET",
+            mode: "cors",
+            headers: {
+                "Content-Type": "application/json",
+                "Accept": "application/json",
+                "Access-Control-Allow-Origin": "*"
+            }
         })
-    }catch(error) {
-        dispatch({
-            type: ERROR,
-            payload: error
-        })
-    }
+        .then(response => response.json())
+        .then(data => dispatch({
+            type: GET_HOME_PRODUCT,
+            payload: data.filter(item => item.id === 7)
+        }))
+        .catch(error => dispatch({ type: ERROR}))
 }

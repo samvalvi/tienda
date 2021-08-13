@@ -5,6 +5,7 @@ const initialData = {
 
 //Types
 const LOGIN_SUCCESSFUL = 'LOGIN_SUCCESSFUL'
+const USER_ACTIVE = 'USER_ACTIVE'
 const ERROR = 'ERROR'
 
 //Reducer
@@ -12,13 +13,14 @@ export default function userLoginReducer(state = initialData, action) {
     switch (action.type) {
         case LOGIN_SUCCESSFUL:
             return {...state, user: action.payload}
+        case USER_ACTIVE:
+            return {...state, user: action.payload}
         case ERROR:
             return {...state}
         default:
             return state
     }
 }
-
 
 //Actions
 export const userLoginAction = (username, password) => async (dispatch, getState) => {
@@ -35,6 +37,19 @@ export const userLoginAction = (username, password) => async (dispatch, getState
             })
         })
         .then(response => response.json())
-        .then(data => dispatch({ type: LOGIN_SUCCESSFUL, payload: data}))
+        .then(data => {
+                if(data.access_token){
+            
+                    dispatch({ type: LOGIN_SUCCESSFUL, payload: data})
+                    localStorage.setItem('data', JSON.stringify(data))
+                }
+        })
         .catch(error => dispatch({ type: ERROR}))  
+}
+
+export const userActiveAction = () => async (dispatch, getState) => {
+    let data = JSON.parse(localStorage.getItem('data'))
+    if(data){
+        dispatch({ type: USER_ACTIVE, payload: data})
     }
+}

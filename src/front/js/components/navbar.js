@@ -1,13 +1,16 @@
 import React,{useState, useEffect} from 'react';
 
 import {NavLink} from 'react-router-dom'
-import {useSelector} from 'react-redux'
+
+import {useDispatch, useSelector} from 'react-redux'
 
 export const Navbar = () => {
     const [active, setActive] = useState(false);
     const [showMenu, setShowMenu] = useState(false);
     const [isLoggedIn, setIsLoggedIn] = useState(false);
     const [name, setName] = useState('');
+
+    const dispatch = useDispatch();
 
     const data = useSelector(state => state.login.user);
 
@@ -46,6 +49,7 @@ export const Navbar = () => {
         }
     }, [data])
 
+
     return (
 
         <header className={(active) ? "l-header scroll-header" : "l-header"} id="header">
@@ -66,13 +70,12 @@ export const Navbar = () => {
                             <li className="nav__item">
                                 <NavLink to="/shop" className="nav__link" id="nav-link" onClick={(e)=> LinkAction(e.target.id)}>Tienda</NavLink>
                             </li>
-                            <li className="nav__item"><p className="nav__link" id="nav-link" >{name}</p></li>
                             <li className="nav__item dropdown">
-                                <NavLink to="#" className="dropdown__link">Ajustes <i className='bx bx-chevron-down dropdown__icon'></i></NavLink>
+                                <NavLink to="#" className="dropdown__link">{name} <i className='bx bx-chevron-down dropdown__icon'></i></NavLink>
                                     
                                 <ul className="dropdown__menu">
                                     <li className="dropdown__item">
-                                        <NavLink to="/settings" className="nav__link" id="nav-link" onClick={(e)=> LinkAction(e.target.id)}>Perfil</NavLink>
+                                        <NavLink to="/settings" className="nav__link" id="nav-link" onClick={(e)=> LinkAction(e.target.id)}>Ajustes</NavLink>
                                     
                                     </li>
                                 </ul>
