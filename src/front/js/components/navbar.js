@@ -1,8 +1,10 @@
 import React,{useState, useEffect} from 'react';
 
-import {NavLink} from 'react-router-dom'
+import {NavLink, Link} from 'react-router-dom'
+import {Redirect} from 'react-router-dom'
 
 import {useDispatch, useSelector} from 'react-redux'
+import { logoutUserAction } from '../redux/logoutDucks';
 
 export const Navbar = () => {
     const [active, setActive] = useState(false);
@@ -49,6 +51,11 @@ export const Navbar = () => {
         }
     }, [data])
 
+    const logoutUser = () => {
+        dispatch(logoutUserAction())
+        setIsLoggedIn(false);
+    }
+
 
     return (
 
@@ -80,7 +87,7 @@ export const Navbar = () => {
                                     </li>
                                 </ul>
                             </li>
-                            <li className="nav__item"><NavLink to="#" className="nav__link">Cerrar sesión</NavLink></li>
+                            <li className="nav__item"><Link to="#" className="nav__link" onClick={() => logoutUser()}>Cerrar sesión</Link></li>
                         </ul>
                         :
                         <ul className="nav__list">

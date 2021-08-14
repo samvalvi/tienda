@@ -5,15 +5,12 @@ const initialData = {
 
 //Types
 const LOGOUT_USER = 'LOGOUT_USER'
-const ERROR = 'ERROR'
 
 //Reducer
 export default function logoutUserRedux (state = initialData, action) {
     switch (action.type) {
         case 'LOGOUT_USER':
-            return {...state, user: action.payload}
-        case 'ERROR':
-            return {...state}
+            return {user: action.payload}
         default:
             return state
     }
@@ -21,14 +18,10 @@ export default function logoutUserRedux (state = initialData, action) {
 
 //Action Creator
 export const logoutUserAction = () => (dispatch, getState) => {
-    try{
+
+        localStorage.removeItem('data')
         dispatch({
-            type: LOGOUT_USER, 
+            type: LOGOUT_USER,
             payload: {}
         })
-    }catch(error){
-        dispatch({
-            type: ERROR
-        })
-    }
 }
