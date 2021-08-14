@@ -1,5 +1,3 @@
-import axios from 'axios'
-
 //Constantes
 const initialData = {
     shopProducts: [],

@@ -1,7 +1,6 @@
 import React,{useState, useEffect} from 'react';
 
 import {NavLink, Link} from 'react-router-dom'
-import {Redirect} from 'react-router-dom'
 
 import {useDispatch, useSelector} from 'react-redux'
 import { logoutUserAction } from '../redux/logoutDucks';
@@ -54,6 +53,8 @@ export const Navbar = () => {
     const logoutUser = () => {
         dispatch(logoutUserAction())
         setIsLoggedIn(false);
+        window.location.pathname='/account'
+        console.log(data.state)
     }
 
 
