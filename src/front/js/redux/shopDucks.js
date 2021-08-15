@@ -1,7 +1,6 @@
 //Constantes
 const initialData = {
-    shopProducts: [],
-    error: ""
+    shopProducts: []
 }
 
 //Types

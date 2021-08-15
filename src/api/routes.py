@@ -172,16 +172,16 @@ def mostrar_productos():
     return jsonify(productos), 200
 
 
-@api.route('/producto', methods=['GET'])
+@api.route('/producto', methods=['GET', 'POST'])
 def mostrar_producto():
     producto_id = request.get_json()
     
     if 'id' not in producto_id:
         return jsonify({'msg': 'Debe especificar un id', 'status': 'failed'}), 400
-    if producto_id['id'].strip() == "":
+    if producto_id['id'] is None:
         return jsonify({'msg': 'El id no existe', 'status': 'failed'}), 400
     
-    producto = Candela.query.get(producto_id)
+    producto = Candela.query.filter_by(id=producto_id['id']).first()
     
     if producto is None:
         return jsonify({'msg': 'Producto no encontrado', 'status': 'failed'}), 404

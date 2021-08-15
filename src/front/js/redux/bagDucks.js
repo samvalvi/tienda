@@ -1,6 +1,6 @@
 //Constantes
 const initialData = {
-    cart: {}
+    cart: []
 }
 
 //Types
@@ -9,8 +9,8 @@ const DELETE_ITEM = 'DELETE_ITEM'
 const ERROR = 'ERROR'
 const CLEAN_BAG = 'CLEAN_BAG'
 
-//Actions
-export default function cartRedux (state = initialData, action) {
+//Reducer
+export default function cartReducer (state = initialData, action) {
     switch (action.type) {
         case 'ADD_ITEM':
            return{...state, cart: action.payload}
@@ -25,24 +25,25 @@ export default function cartRedux (state = initialData, action) {
     }
 }
 
-//Reducers
-export const addItemAction = (id) => async(dispatch, getState) => {
+//Action Creators
+export const addItemAction = (product_id) => async(dispatch, getState) => {
     await fetch(process.env.REACT_APP_API_URL + 'api/producto', {
-        method: 'GET',
-        mode: 'cors',
+        method: "POST",
+        mode: "cors",
         headers: {
+            'Accept': 'application/json',
             "Content-Type": "application/json",
             "Access-Control-Allow-Origin":"*"
         },
         body: JSON.stringify({
-            id:id
+            id:product_id
         })
     })
     .then(response => response.json())
     .then(data =>
         dispatch({
             type: ADD_ITEM,
-            payload: data
+            payload: data.producto
         })
     )
     .catch(error => {
