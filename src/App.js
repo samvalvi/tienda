@@ -29,7 +29,7 @@ function App() {
           <Route path="/shop" component={CandleStore} />
           <Route path="/account" component={Account} />
           <Route path="/settings" component={EditForm} />
-          <Route path="/recover-password" component={RecoverPassword} />
+          <Route path="/reset-password" component={RecoverPassword} />
           <Route path="/send-code" component={SendCode} />
           <Route path="/shopbag" component={ShopBag} />
           <Route component={Error404} />
