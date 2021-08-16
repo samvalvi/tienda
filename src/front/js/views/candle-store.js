@@ -16,9 +16,13 @@ export const CandleStore = () => {
     }, [dispatch])
 
     const products = useSelector(state => state.shopProducts.shopProducts);
+    const shopBag = useSelector(state => state.bag.cart)
 
     const addItem = (id) => {
-        addItemDispatch(addItemAction(id));
+        const item = shopBag.find(item => item.id === id)
+        if(!item){
+            addItemDispatch(addItemAction(id))
+        }
     }
 
     return (
@@ -28,7 +32,7 @@ export const CandleStore = () => {
                 
                 <div className="featured__container bd-grid">
 
-                {(products) ?
+                {(products.length > 0) ?
                     products.map((product, index) => (
 
                         <div className="product" key={index}>

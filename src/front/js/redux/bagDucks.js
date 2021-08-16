@@ -5,21 +5,25 @@ const initialData = {
 
 //Types
 const ADD_ITEM = 'ADD_ITEM'
-const DELETE_ITEM = 'DELETE_ITEM'
+const CART_ACTIVE = 'CART_ACTIVE'
+const REMOVE_ONE = 'REMOVE_ONE'
 const ERROR = 'ERROR'
-const CLEAN_BAG = 'CLEAN_BAG'
 
 //Reducer
 export default function cartReducer (state = initialData, action) {
     switch (action.type) {
         case 'ADD_ITEM':
-           return{...state, cart: action.payload}
-        case 'DELETE_ITEM':
-            return{...state, cart: action.payload}
-        case 'CLEAN_BAG':
-            return{...state}
+            let item = state.cart.find(item => item.id === action.payload.id)
+            if(!item) {
+                return {...state, cart: [...state.cart, action.payload]}
+            }
+            break;
+        case 'REMOVE_ONE':
+            return {...state, cart: state.cart.filter(item => item.id !== action.payload)}
+        case 'CART_ACTIVE':
+            return {...state}
         case 'ERROR':
-            return{...state}
+            return {...state}
         default:
             return state
     }
@@ -40,10 +44,11 @@ export const addItemAction = (product_id) => async(dispatch, getState) => {
         })
     })
     .then(response => response.json())
-    .then(data =>
+    .then(data => 
+
         dispatch({
             type: ADD_ITEM,
-            payload: data.producto
+            payload: data.producto 
         })
     )
     .catch(error => {
@@ -51,10 +56,13 @@ export const addItemAction = (product_id) => async(dispatch, getState) => {
     })
 }
 
-export const deleteItemAction = () => (dispatch, getState) => {
-
-}
-
-export const cleanBagAction = () => (dispatch, getState) => {
-
+export const removeItemAction = (product_id) => async(dispatch, getState) => {
+    try{
+        dispatch({
+            type: REMOVE_ONE,
+            payload: product_id
+        })
+    }catch(error) {
+        dispatch({type: ERROR})
+    }
 }

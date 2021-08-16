@@ -21,7 +21,7 @@ export const Featured = () => {
 
             
             <div className="featured__container bd-grid">
-            { (productos) ?
+            { (productos.length > 0) ?
                     productos.map((producto, index) => (
                         <div className="product" key={index}>
                             <div className="product__featured">Nuevo</div>
@@ -33,7 +33,6 @@ export const Featured = () => {
                     ))
     
                 :
-                
                 <h3 className="loading__text">Loading...</h3>
                 
             }
