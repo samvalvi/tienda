@@ -1,18 +1,26 @@
 import React, {useEffect} from 'react'
 
+import {NavLink} from 'react-router-dom'
+
 import { useDispatch, useSelector } from 'react-redux'
 import { getNewProductsAction } from '../redux/newDucks';
+import { addItemAction } from '../redux/bagDucks';
 
 export const Featured = () => {
     //Lee la acción
-    const dispatch = useDispatch();
+    const loadDispatch = useDispatch();
+    const buyDispatch = useDispatch();
 
     useEffect(() => {
-        dispatch(getNewProductsAction());
-    },[dispatch]);
+        loadDispatch(getNewProductsAction());
+    },[loadDispatch]);
 
     //Devuelve el state
     const productos = useSelector(store => store.newProduct.newProducts);
+
+    const addToBag = (producto_id) => {
+        buyDispatch(addItemAction(producto_id));
+    }
 
     return (
 
@@ -27,8 +35,9 @@ export const Featured = () => {
                             <div className="product__featured">Nuevo</div>
                             <img src={producto.img} alt="candel-img" className="product__img"/>
                             <span className="product__name">{producto.nombre}</span>
+                            <span className="product__fragance">{producto.esencia}</span>
                             <span className="product__price">₡{producto.precio}</span>
-                            <a href="#" className="button-light">Agregar <i className='bx bx-right-arrow-alt button-icon'></i></a>
+                            <NavLink to="#" className="button-light" onClick={()=> addToBag(producto.id)}>Agregar <i className='bx bx-right-arrow-alt button-icon'></i></NavLink>
                         </div>
                     ))
     

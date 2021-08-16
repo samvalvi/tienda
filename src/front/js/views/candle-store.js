@@ -33,13 +33,14 @@ export const CandleStore = () => {
                 <div className="featured__container bd-grid">
 
                 {(products.length > 0) ?
-                    products.map((product, index) => (
+                    products.map((producto, index) => (
 
                         <div className="product" key={index}>
-                            <img src={product.img} alt="" className="product__img"/>
-                            <span className="product__name">{product.nombre}</span>
-                            <span className="product__price">₡{product.precio}</span>
-                            <NavLink to="#" className="button-light" onClick={() => addItem(product.id)} >Agregar <i className='bx bx-right-arrow-alt button-icon'></i></NavLink>
+                            <img src={producto.img} alt="" className="product__img"/>
+                            <span className="product__name">{producto.nombre}</span>
+                            <span className="product__fragance">{producto.esencia}</span>
+                            <span className="product__price">₡{producto.precio}</span>
+                            <NavLink to="#" className="button-light" onClick={() => addItem(producto.id)} >Agregar <i className='bx bx-right-arrow-alt button-icon'></i></NavLink>
                         </div>
                     
                     ))

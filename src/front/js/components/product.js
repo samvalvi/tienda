@@ -2,18 +2,24 @@ import React, {useEffect} from 'react'
 
 import {getHomeProductAction} from '../redux/homeDucks'
 import { useDispatch, useSelector } from 'react-redux'
+import { addItemAction } from '../redux/bagDucks'
 
-import {Link} from 'react-router-dom'
+import {NavLink} from 'react-router-dom'
 
 export const Product = () => {
 
-    const dispatch = useDispatch();
+    const loadDispatch = useDispatch();
+    const buyDispatch = useDispatch();
 
     useEffect(() => {
-        dispatch(getHomeProductAction());
-    }, [dispatch])
+        loadDispatch(getHomeProductAction());
+    }, [loadDispatch])
 
     const homeProduct = useSelector(state => state.homeProduct.homeProduct)
+
+    const addToBag = (product_id) => {
+        buyDispatch(addItemAction(product_id))
+    }
 
     return (
         <section className="home section" id="home">
@@ -31,7 +37,7 @@ export const Product = () => {
                                 <h1 className="home__title">{item.nombre}</h1>
                                 <h1 className="home__subtitle">Precio ₡{item.precio}</h1>
                                 <p className="home__description">Explore la tienda para encontrar más productos.</p>
-                                <Link to="/shop" className="button">Comprar ahora</Link>
+                                <NavLink to="#" className="button" onClick={()=> addToBag(item.id)}>Comprar ahora</NavLink>
                             </div>
 
                         </div>
