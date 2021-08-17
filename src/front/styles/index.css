@@ -965,6 +965,12 @@ img{
   box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 6px -1px, rgba(0, 0, 0, 0.06) 0px 2px 4px -1px;
 }
 
+.bag__product-details{
+  padding: 3%;
+  text-align: justify;
+  font-size: var(--normal-font-size);
+}
+
 .bag__product-img{
   display: flex;
   flex-direction: column;
@@ -977,14 +983,14 @@ img{
 
 }
 
-.bag__item-quantity{
+.bag__quantity-box{
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  padding: 2%;
+  margin: 3%;
 }
 
-.bag__quantity-box{
+.bag__quantity-input{
   outline: none;
   border-radius: .5rem;
   border: none;
@@ -1004,6 +1010,7 @@ img{
 #icon__item{
   padding: 2% 0;
   font-size: var(--big-font-size);
+  cursor: pointer;
 }
 
 #close__icon{
@@ -1034,6 +1041,7 @@ img{
   display: flex;
   flex-direction: column;
   justify-items: start;
+  font-size: var(--normal-font-size);
 }
 
 /*MEDIA QUERIES*/

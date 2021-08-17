@@ -6,7 +6,7 @@ const initialData = {
 //Types
 const LOGIN_SUCCESSFUL = 'LOGIN_SUCCESSFUL'
 const USER_ACTIVE = 'USER_ACTIVE'
-const LOGIN_UNSUCESSFUL = 'LOGIN_UNSUCESSFUL'
+const LOGIN_UNSUCCESSFUL = 'LOGIN_UNSUCCESSFUL'
 const ERROR = 'ERROR'
 
 //Reducer
@@ -45,7 +45,7 @@ export const userLoginAction = (username, password) => async (dispatch, getState
                     dispatch({ type: LOGIN_SUCCESSFUL, payload: data})
                     localStorage.setItem('data', JSON.stringify(data))
                 }else{
-                    dispatch({ type: LOGIN_UNSUCESSFUL, payload: data})   
+                    dispatch({ type: LOGIN_UNSUCCESSFUL, payload: data})   
                 }
         })
         .catch(error => dispatch({ type: ERROR}))  

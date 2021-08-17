@@ -76,7 +76,7 @@ export const Account = () => {
                             }
                             <div className="login__box">
                                 <i className='bx bx-user login__icon'></i>
-                                <input type="text" placeholder="email" className="login__input" onChange={(e) => setLoginEmail(e.target.value)} value={loginEmail}/>
+                                <input type="email" placeholder="email" className="login__input" onChange={(e) => setLoginEmail(e.target.value)} value={loginEmail}/>
                             </div>
     
                             <div className="login__box">

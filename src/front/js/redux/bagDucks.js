@@ -1,31 +1,33 @@
 //Constantes
 const initialData = {
-    cart: [],
-    total: 0,
-    quantity: 0
+    cart: []
 }
 
 //Types
 const ADD_ITEM = 'ADD_ITEM'
+const INCREASE_ITEM = 'INCREASE_ITEM'
+const DECREASE_ITEM = 'DECREASE_ITEM'
 const CART_ACTIVE = 'CART_ACTIVE'
 const REMOVE_ONE = 'REMOVE_ONE'
-const TOTAL_ITEMS = 'TOTAL_ITEMS'
-const TOTAL_QUATITY = 'TOTAL_QUANTITY'
 const ERROR = 'ERROR'
 
 //Reducer
 export default function cartReducer (state = initialData, action) {
     switch (action.type) {
         case 'ADD_ITEM':
-            let item = state.cart.find(item => item.id === action.payload.id)
-            if(!item) return {...state, cart: [...state.cart, action.payload]}
-            else return {...state, quantiy: state.quantity + 1, total: state.total * state.quantity}
-        case 'TOTAL_ITEMS':
-            return {...state, total: action.payload}
-        case 'TOTAL_QUANTITY':
-            return {...state, quantity: action.payload}
+            let i = state.cart.find(i => i.id === action.payload.id)
+            if(!i) return {...state, cart: [...state.cart, {...action.payload, quantity: 1}]}
+            break;
+        case 'INCREASE_ITEM':
+            let j = state.cart.find(item => item.id === action.payload)
+            if(j) return {...state, cart: [{...j, quantity: j.quantity + 1}]}
+            break;
+        case 'DECREASE_ITEM':
+            let k = state.cart.find(item => item.id === action.payload)
+            if(k) return {...state, cart: [{...k, quantity: k.quantity - 1}]}
+            break;
         case 'REMOVE_ONE':
-            return {...state, cart: state.cart.filter(item => item.id !== action.payload)}
+            return {...state, cart: state.cart.filter(i => i.id !== action.payload)}
         case 'CART_ACTIVE':
             return {...state}
         case 'ERROR':
@@ -62,8 +64,26 @@ export const addItemAction = (product_id) => async(dispatch, getState) => {
     })
 }
 
-export const totalItemsAction = () => async(dispatch, getState) => {
+export const increaseItemAction = (product_id) => async(dispatch, getState) => {
+    try{
+        dispatch({
+            type: INCREASE_ITEM,
+            payload: product_id
+        })
+    }catch(error) {
+        dispatch({type: ERROR})
+    }
+}
 
+export const decreaseItemAction = (product_id) => async(dispatch, getState) => {
+    try{
+        dispatch({
+            type: DECREASE_ITEM,
+            payload: product_id
+        })
+    }catch(error) {
+        dispatch({type: ERROR})
+    }
 }
 
 export const removeItemAction = (product_id) => async(dispatch, getState) => {
