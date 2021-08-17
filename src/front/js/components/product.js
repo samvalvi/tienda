@@ -35,7 +35,8 @@ export const Product = () => {
 
                             <div className="home__data" id="home-data">
                                 <h1 className="home__title">{item.nombre}</h1>
-                                <h1 className="home__subtitle">Precio ₡{item.precio}</h1>
+                                <h1 className="home__subtitle">Precio: ₡{item.precio}</h1>
+                                <h3>Fragancia: {item.esencia}</h3>
                                 <p className="home__description">Explore la tienda para encontrar más productos.</p>
                                 <NavLink to="#" className="button" onClick={()=> addToBag(item.id)}>Comprar ahora</NavLink>
                             </div>

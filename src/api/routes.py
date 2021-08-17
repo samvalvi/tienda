@@ -83,7 +83,7 @@ def inicio_sesion():
 
     password = bcrypt.checkpw(request_body['clave'].encode(), usuario.clave)
 
-    if request_body['correo'] != usuario.email or password is not True:
+    if password is not True:
         return jsonify({'msg': 'El email o la contraseña no coinciden, vuelva a intentarlo', 'status': 'failed'}), 400
 
     if request_body['correo'] == usuario.email and password:

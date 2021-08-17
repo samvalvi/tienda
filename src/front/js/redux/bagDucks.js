@@ -1,12 +1,16 @@
 //Constantes
 const initialData = {
-    cart: []
+    cart: [],
+    total: 0,
+    quantity: 0
 }
 
 //Types
 const ADD_ITEM = 'ADD_ITEM'
 const CART_ACTIVE = 'CART_ACTIVE'
 const REMOVE_ONE = 'REMOVE_ONE'
+const TOTAL_ITEMS = 'TOTAL_ITEMS'
+const TOTAL_QUATITY = 'TOTAL_QUANTITY'
 const ERROR = 'ERROR'
 
 //Reducer
@@ -14,10 +18,12 @@ export default function cartReducer (state = initialData, action) {
     switch (action.type) {
         case 'ADD_ITEM':
             let item = state.cart.find(item => item.id === action.payload.id)
-            if(!item) {
-                return {...state, cart: [...state.cart, action.payload]}
-            }
-            break;
+            if(!item) return {...state, cart: [...state.cart, action.payload]}
+            else return {...state, quantiy: state.quantity + 1, total: state.total * state.quantity}
+        case 'TOTAL_ITEMS':
+            return {...state, total: action.payload}
+        case 'TOTAL_QUANTITY':
+            return {...state, quantity: action.payload}
         case 'REMOVE_ONE':
             return {...state, cart: state.cart.filter(item => item.id !== action.payload)}
         case 'CART_ACTIVE':
@@ -54,6 +60,10 @@ export const addItemAction = (product_id) => async(dispatch, getState) => {
     .catch(error => {
         dispatch({type: ERROR})
     })
+}
+
+export const totalItemsAction = () => async(dispatch, getState) => {
+
 }
 
 export const removeItemAction = (product_id) => async(dispatch, getState) => {

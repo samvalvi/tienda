@@ -45,11 +45,10 @@ export const Account = () => {
         setRepetir_Clave('')
     }
 
-    const statusLogin = useSelector( (state) => state.login.user )
+    const statusLogin = useSelector( state => state.login.user )
 
-
-    const handleSubmitLogin = (e) => {
-        e.preventDefault();
+    const handleSubmitLogin = () => {
+        
         dispatcherLogin(userLoginAction( loginEmail, loginClave ))
     }
 
@@ -88,7 +87,7 @@ export const Account = () => {
                                 <p className="login__message">*Todos los campos son obligatorios.</p>
                             </div>
 
-                            <NavLink to="#" className="button" onClick={e => handleSubmitLogin(e)}>Ingresar</NavLink>
+                            <NavLink to="#" className="button" onClick={() => handleSubmitLogin()}>Ingresar</NavLink>
 
                             <NavLink to="/send-code" className="login__forgot" >¿Olvidó su contraseña?</NavLink>
                         </form>

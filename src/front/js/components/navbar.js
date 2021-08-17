@@ -54,7 +54,6 @@ export const Navbar = () => {
         dispatch(logoutUserAction())
         setIsLoggedIn(false);
         window.location.pathname='/account'
-        console.log(data.state)
     }
 
 
