@@ -16,15 +16,15 @@ export default function cartReducer (state = initialData, action) {
     switch (action.type) {
         case 'ADD_ITEM':
             let i = state.cart.find(i => i.id === action.payload.id)
-            if(!i) return {...state, cart: [...state.cart, {...action.payload, quantity: 1}]}
+            if(!i) return {...state, cart: [...state.cart, {...action.payload, quantity: 1, subtotal: action.payload.precio}]}
             break;
         case 'INCREASE_ITEM':
             let j = state.cart.find(item => item.id === action.payload)
-            if(j) return {...state, cart: [{...j, quantity: j.quantity + 1}]}
+            if(j) return {...state, cart: [{...j, quantity: j.quantity + 1, subtotal: j.quantity * j.precio}]}
             break;
         case 'DECREASE_ITEM':
             let k = state.cart.find(item => item.id === action.payload)
-            if(k) return {...state, cart: [{...k, quantity: k.quantity - 1}]}
+            if(k) return {...state, cart: [{...k, quantity: k.quantity - 1, subtotal: k.quantity * k.precio}]}
             break;
         case 'REMOVE_ONE':
             return {...state, cart: state.cart.filter(i => i.id !== action.payload)}

@@ -986,7 +986,6 @@ img{
 .bag__quantity-box{
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
   margin: 3%;
 }
 
@@ -998,7 +997,7 @@ img{
   font-weight: var(--normal-font-weight);
   text-align: center;
   color: var(--dark-color);
-  width: calc(100% - 45%);
+  width: calc(100% - 75%);
   padding: 1% 0;
   margin: 0 2%;
 }
