@@ -246,7 +246,7 @@ img{
   font-weight: var(--font-medium);
   border-radius: .5rem;
   transition: .3s;
-  filter: drop-shadow(0 16px 8px rgba(0,0,0,.2))
+  filter: drop-shadow(0 11px 8px rgba(0,0,0,.2))
 }
 
 .button:hover {
@@ -1072,7 +1072,7 @@ img{
   font-weight: var(--font-medium);
   border-radius: .5rem;
   transition: .3s;
-  filter: drop-shadow(0 16px 8px rgba(0,0,0,.2))
+  filter: drop-shadow(0 11px 8px rgba(0,0,0,.2));
 }
 
 .button__order:hover {

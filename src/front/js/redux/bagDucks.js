@@ -20,11 +20,11 @@ export default function cartReducer (state = initialData, action) {
             break;
         case 'INCREASE_ITEM':
             let j = state.cart.find(item => item.id === action.payload)
-            if(j) return {...state.cart, cart: [{...j, quantity: j.quantity + 1}]}
+            if(j) return {...state, cart: state.cart.map((item) => item.id === action.payload ? {...item, quantity: j.quantity + 1} : item)}
             break;
         case 'DECREASE_ITEM':
             let k = state.cart.find(item => item.id === action.payload)
-            if(k) return {...state, cart: [{...k, quantity: (k.quantity - 1) > 0 ? k.quantity - 1 : 0}]}
+            if(k) return {...state, cart: state.cart.map(item => item.id === action.payload ? {...item, quantity: (k.quantity -1) > 0 ? k.quantity - 1 : 0 } : item)}
             break;
         case 'REMOVE_ONE':
             return {...state, cart: state.cart.filter(i => i.id !== action.payload)}
