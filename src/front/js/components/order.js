@@ -8,6 +8,8 @@ export function Order() {
 
     const dispatch = useDispatch()
 
+    const totalItem = useSelector( state => state.bag.cart )
+
     return (
         <div className="order__container">
             <div className="order__details">    

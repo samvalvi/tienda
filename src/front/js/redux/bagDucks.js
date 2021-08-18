@@ -7,8 +7,8 @@ const initialData = {
 const ADD_ITEM = 'ADD_ITEM'
 const INCREASE_ITEM = 'INCREASE_ITEM'
 const DECREASE_ITEM = 'DECREASE_ITEM'
-const CART_ACTIVE = 'CART_ACTIVE'
 const REMOVE_ONE = 'REMOVE_ONE'
+const TOTAL_ITEMS = 'TOTAL_ITEMS'
 const ERROR = 'ERROR'
 
 //Reducer
@@ -28,8 +28,8 @@ export default function cartReducer (state = initialData, action) {
             break;
         case 'REMOVE_ONE':
             return {...state, cart: state.cart.filter(i => i.id !== action.payload)}
-        case 'CART_ACTIVE':
-            return {...state}
+        case 'TOTAL_ITEMS':
+            return {...state, total: action.payload}
         case 'ERROR':
             return {...state}
         default:
@@ -91,6 +91,16 @@ export const removeItemAction = (product_id) => async(dispatch, getState) => {
         dispatch({
             type: REMOVE_ONE,
             payload: product_id
+        })
+    }catch(error) {
+        dispatch({type: ERROR})
+    }
+}
+
+export const totalItem = () => async(dispatch, getState) => {
+    try{
+        dispatch({
+            type: TOTAL_ITEMS
         })
     }catch(error) {
         dispatch({type: ERROR})
