@@ -1,7 +1,18 @@
 import React from 'react'
-import AuthImg from '../../img/authentication.svg'
+
+import {NavLink, useHistory} from 'react-router-dom'
+
+import AuthImg from '../../img/Password.svg'
 
 export const RecoverPassword = () => {
+
+    const history = useHistory()
+
+    const handleClick = (e) => {
+        e.preventDefault();
+        return history.push("/account")
+    }
+
     return (
         <main className="l-main">
             <section className="section">
@@ -11,11 +22,12 @@ export const RecoverPassword = () => {
 
                         <div className="recover__message-container">
                             <h2 className="recover__message">Actualizar contraseña</h2>
-                            <i className='bx bx-x close__icon'></i>
+                            <i className='bx bx-x close__icon' onClick={()=> {history.push("/account")}}></i>
                         </div>
 
                         <div className="recover__image">
                             <img src={AuthImg} alt="recover code"/>
+                            <NavLink to="https://storyset.com/people"><p className="image__attribution">People illustrations by Storyset</p></NavLink>
                         </div>
                         
                         <div className="dialog__box">
@@ -38,7 +50,7 @@ export const RecoverPassword = () => {
                                 <input type="password" placeholder="repetir nueva contraseña" className="recover__input" />
                             </div>
 
-                            <a href="#" className="button">Actualizar</a>
+                            <NavLink to="#" className="button" onClick={(e)=> handleClick(e)}>Actualizar</NavLink>
                         </form>
 
                     </div>

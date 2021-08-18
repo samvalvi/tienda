@@ -53,7 +53,7 @@ export const Navbar = () => {
     const logoutUser = () => {
         dispatch(logoutUserAction())
         setIsLoggedIn(false);
-        window.location.pathname='/account'
+        window.location.pathname = '/account';
     }
 
 
@@ -87,7 +87,9 @@ export const Navbar = () => {
                                     </li>
                                 </ul>
                             </li>
-                            <li className="nav__item"><Link to="#" className="nav__link" onClick={() => logoutUser()}>Cerrar sesión</Link></li>
+                            <li className="nav__item"><Link to="#" className="nav__link" onClick={() => logoutUser()}>Cerrar sesión</Link>
+                            </li>
+                            
                         </ul>
                         :
                         <ul className="nav__list">

@@ -42,14 +42,14 @@ export function Bag() {
                             <p className="bag__product-text"><b>Nombre:</b> {item.nombre}</p>
                             <p className="bag__product-text"><b>Esencia:</b> {item.esencia}</p>
                             <p className="bag__product-text"><b>Descripción:</b> {item.descripcion}</p>
-                            <p className="bag__product-text"><b>Cantidad:</b></p>
+                            
                             <div className="bag__quantity-box">
+                                <div className="subtitle__bag-quantity">
+                                    <p className="bag__product-text"><b>Cantidad:</b></p>
+                                </div>
                                 <i className='bx bx-minus' id="icon__item" onClick={()=> decreaseItem(item.id)}></i>
-                                <input type="text" className="bag__quantity-input" placeholder="0" value={item.quantity} readOnly="readonly"></input>
+                                <input type="number" className="bag__quantity-input" placeholder="0" value={item.quantity} readOnly="readonly"></input>
                                 <i className='bx bx-plus' id="icon__item" onClick={()=> increaseItem(item.id)}></i>
-                            </div>
-                            <div className="bag__item-total">
-                                <p className="bag__product-text"><b>Subtotal:</b> ₡{item.subtotal}</p>
                             </div>
                         </div>
                         <div className="bag__product-delete">                        

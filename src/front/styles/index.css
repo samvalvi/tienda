@@ -22,7 +22,7 @@
   --h2-font-size: 1.25rem;
   --normal-font-size:.938rem;
   --smaller-font-size:.813rem;
-  --smallest-font-size:.625rem;
+  --smallest-font-size:.615rem;
   
   /*MARGINS*/
   --mb-1:.5rem;
@@ -83,6 +83,12 @@ img{
   max-width: 100%;
   height: auto;
   display: block;
+}
+
+.image__attribution{
+  font-size: var(--smallest-font-size);
+  float: right;
+  color: #9CA3AF;
 }
 
 /*LOADING*/
@@ -983,10 +989,18 @@ img{
 
 }
 
+.subtitle__bag-quantity{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
 .bag__quantity-box{
   display: flex;
   flex-direction: row;
-  margin: 3%;
+  padding: 3% 0;
+  margin-top: 5%;
+  column-gap: 5%;
 }
 
 .bag__quantity-input{
@@ -1043,6 +1057,28 @@ img{
   font-size: var(--normal-font-size);
 }
 
+.order__actions{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+
+.button__order{
+  display: inline-flex;
+  background-color: var(--dark-color);
+  align-items: center;
+  color: var(--white-color);
+  padding: 1rem 1.5rem;
+  font-weight: var(--font-medium);
+  border-radius: .5rem;
+  transition: .3s;
+  filter: drop-shadow(0 16px 8px rgba(0,0,0,.2))
+}
+
+.button__order:hover {
+  transform: translateY(-.25rem);
+}
+
 /*MEDIA QUERIES*/
 @media screen and (max-width: 540px){
   .nav{
@@ -1067,6 +1103,11 @@ img{
 
   .register__form{
     width: 100%;
+  }
+
+  .error__container{
+    display: flex;
+    flex-direction: column;
   }
   
 }

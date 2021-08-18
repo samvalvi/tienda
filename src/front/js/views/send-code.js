@@ -1,8 +1,18 @@
 import React from 'react'
 
-import ForgotPass from '../../img/forgot-password.svg'
+import {NavLink, useHistory} from 'react-router-dom'
+
+import ForgotPass from '../../img/ForgotPassword.svg'
 
 export const SendCode = () => {
+
+    const history = useHistory()
+
+    const handleClick = (e) => {
+        e.preventDefault();
+        return history.push("/reset-password")
+    }
+
     return (
         <main className="l-main">
             <section className="section">
@@ -12,11 +22,12 @@ export const SendCode = () => {
                         
                         <div className="send__message-container">
                             <h2 className="send__code-message">Recuperar contraseña</h2>
-                            <i className='bx bx-x close__icon'></i>
+                            <i className='bx bx-x close__icon' onClick={() => {history.push("/account")}}></i>
                         </div>
 
                         <div className="send__code-image">
                             <img src={ForgotPass} alt="send code"/>
+                            <NavLink to="https://storyset.com/people"><p className="image__attribution">People illustrations by Storyset</p></NavLink>
                         </div>
 
                         <div className="dialog__box">
@@ -29,7 +40,7 @@ export const SendCode = () => {
                                 <input type="email" placeholder="email" className="send__code-input" />
                             </div>
 
-                            <a href="#" className="button">Enviar email</a>
+                            <NavLink to="#" className="button" onClick={(e) => handleClick(e)}>Enviar email</NavLink>
                         </form>
 
                     </div>

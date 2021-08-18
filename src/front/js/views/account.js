@@ -1,7 +1,6 @@
 import React, {useState, useEffect} from 'react'
 
-import {NavLink} from 'react-router-dom'
-import {Redirect} from 'react-router-dom'
+import {NavLink, useHistory} from 'react-router-dom'
 
 import { useDispatch, useSelector } from 'react-redux'
 import { postUserRegisterAction } from '../redux/registerDucks'
@@ -23,6 +22,8 @@ export const Account = () => {
     const [registerClave, setRegisterClave] = useState('')
     const [repetir_Clave, setRepetir_Clave] = useState('')
     const [registerMsg, setRegisterMsg] = useState('')
+
+    const history = useHistory();
 
     const dispatchRegister = useDispatch()
     const dispatcherLogin = useDispatch()
@@ -48,7 +49,6 @@ export const Account = () => {
     const statusLogin = useSelector( state => state.login.user )
 
     const handleSubmitLogin = () => {
-        
         dispatcherLogin(userLoginAction( loginEmail, loginClave ))
     }
 
@@ -91,7 +91,7 @@ export const Account = () => {
 
                             <NavLink to="/send-code" className="login__forgot" >¿Olvidó su contraseña?</NavLink>
                         </form>
-                        {(auth) ? <Redirect to="/" /> : null}
+                        {(auth) ? history.push("/") : null}
                     </div>
 
 
