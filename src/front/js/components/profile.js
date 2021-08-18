@@ -1,5 +1,9 @@
 import React from 'react'
 
+import {NavLink} from 'react-router-dom'
+
+import profileImg from '../../img/Profile-Interface.svg'
+
 export const EditForm = () => {
     return  (
         <main className="l-main">
@@ -10,8 +14,25 @@ export const EditForm = () => {
                     <div className="edit__container">
 
                         <div className="edit__message-container">
-                            <h2 className="edit__message">Actualizar datos personales</h2>
+                            <h2 className="edit__message">Ajustes</h2>
                             <i className='bx bx-x close__icon'></i>
+                        </div>
+                        
+                        <div className="profile__info">
+                            <div className="profile__img">
+                                <img src={profileImg} alt="profile-img" />
+                                <NavLink to="https://storyset.com/people"><p className="image__attribution">People illustrations by Storyset</p></NavLink>
+                            </div>
+                            <div className="profile__data">
+                                <p>Nombre:</p>
+                                <p>Apellido:</p>
+                                <p>Email:</p>
+                                <p>Provincia:</p>
+                            </div>
+                        </div>
+
+                        <div className="edit__message-container">
+                            <h2 className="edit__message">Actualizar datos personales</h2>
                         </div>
 
                         <form action="">
@@ -38,7 +59,7 @@ export const EditForm = () => {
                             </div>
 
                         
-                            <a href="#" className="button">Guardar cambios</a>
+                            <NavLink to="#" className="button">Guardar cambios</NavLink>
                         </form>
 
                         <div className="line__container">
@@ -64,7 +85,7 @@ export const EditForm = () => {
 
                             </div>
 
-                            <a href="#" className="button">Guardar cambios</a>
+                            <NavLink to="#" className="button">Guardar cambios</NavLink>
                         </form>
 
                         <div className="line__container">
@@ -87,11 +108,12 @@ export const EditForm = () => {
                                     <input type="password" placeholder="contraseña" className="delete__input" />
                                 </div>
 
-                                <a href="#" className="button">Eliminar</a>
+                                <NavLink to="#" className="button">Eliminar</NavLink>
                             </div>
                         </form>
 
                     </div>
+                    
                 </div>
             </section>
         </main>
