@@ -63,7 +63,7 @@ export const Navbar = () => {
 
             <nav className="nav bd-grid">
                 <div className="nav__toggle" id="nav-toggle">
-                    <i className={(showMenu) ? 'bx bx-list-ul' : 'bx bx-menu'} id="toggle" onClick={(e)=> Menu(e.target.id)}></i>
+                    <i className={(showMenu) ? 'bx bx-list-ul' : 'bx bx-menu'} id="toggle" onClick={(e) => Menu(e.target.id)}/>
                 </div>
 
                 <p className="nav__logo">APP__DEVELOP_VELAS</p>
@@ -78,7 +78,7 @@ export const Navbar = () => {
                                 <NavLink to="/shop" className="nav__link" id="nav-link" onClick={(e)=> LinkAction(e.target.id)}>Tienda</NavLink>
                             </li>
                             <li className="nav__item dropdown">
-                                <NavLink to="#" className="dropdown__link">{name} <i className='bx bx-chevron-down dropdown__icon'></i></NavLink>
+                                <NavLink to="#" className="dropdown__link">{name} <i className='bx bx-chevron-down dropdown__icon'/></NavLink>
                                     
                                 <ul className="dropdown__menu">
                                     <li className="dropdown__item">
@@ -105,7 +105,7 @@ export const Navbar = () => {
                 </div>
 
                 <div className="nav__shop">
-                    <NavLink to="/shopbag" className="nav__link" id="nav-link" ><i className='bx bx-shopping-bag bx-flashing-hover'></i></NavLink>
+                    <NavLink to="/shopbag" className="nav__link" id="nav-link" ><i className='bx bx-shopping-bag bx-flashing-hover'/></NavLink>
                 </div>
             
             </nav>

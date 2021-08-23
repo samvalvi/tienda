@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from 'react'
 
-import {NavLink, useHistory} from 'react-router-dom'
+import {NavLink, Redirect} from 'react-router-dom'
 
 import { useDispatch, useSelector } from 'react-redux'
 import { postUserRegisterAction } from '../redux/registerDucks'
@@ -22,8 +22,6 @@ export const Account = () => {
     const [registerClave, setRegisterClave] = useState('')
     const [repetir_Clave, setRepetir_Clave] = useState('')
     const [registerMsg, setRegisterMsg] = useState('')
-
-    const history = useHistory();
 
     const dispatchRegister = useDispatch()
     const dispatcherLogin = useDispatch()
@@ -47,6 +45,7 @@ export const Account = () => {
     }
 
     const statusLogin = useSelector( state => state.login.user )
+    const msg = useSelector( state => state.login.user.msg )
 
     const handleSubmitLogin = () => {
         dispatcherLogin(userLoginAction( loginEmail, loginClave ))
@@ -57,12 +56,12 @@ export const Account = () => {
             setAuth(true)
         }else{
             setAuth(false)
-            setLoginMsg(statusLogin.msg)
+            setLoginMsg(msg)
         }
     }, [statusLogin])
 
     return (
-        <main className="l-main">
+        <main className="l-main bd-grid">
             <section className="account section">
                 <h2 className="section-title">Mi cuenta</h2>
                 
@@ -75,12 +74,12 @@ export const Account = () => {
                                 (loginMsg) ? <p className="login__error">{loginMsg}</p> : null
                             }
                             <div className="login__box">
-                                <i className='bx bx-user login__icon'></i>
+                                <i className='bx bx-user login__icon'/>
                                 <input type="email" placeholder="email" className="login__input" onChange={(e) => setLoginEmail(e.target.value)} value={loginEmail}/>
                             </div>
     
                             <div className="login__box">
-                                <i className='bx bx-lock-alt login__icon'></i>
+                                <i className='bx bx-lock-alt login__icon'/>
                                 <input type="password" placeholder="contraseña" className="login__input" onChange={(e) => setLoginClave(e.target.value)} value={loginClave} />
                             </div>
                             <div className="login__message-container">
@@ -91,7 +90,7 @@ export const Account = () => {
 
                             <NavLink to="/send-code" className="login__forgot" >¿Olvidó su contraseña?</NavLink>
                         </form>
-                        {(auth) ? history.push("/") : null}
+                        {(auth) ? <Redirect to='/' /> : null}
                     </div>
 
 
@@ -104,32 +103,32 @@ export const Account = () => {
                             </div>
 
                             <div className="register__box">
-                                <i className='bx bx-user register__icon'></i>
+                                <i className='bx bx-user register__icon'/>
                                 <input type="text" placeholder="primer nombre" className="register__input" onChange={(e)=> setRegisterPrimerNombre(e.target.value)} value={registerPrimerNombre} required />
                             </div>
 
                             <div className="register__box">
-                                <i className='bx bx-user register__icon'></i>
+                                <i className='bx bx-user register__icon'/>
                                 <input type="text" placeholder="primer apellido" className="register__input" onChange={(e)=> setRegisterPrimerApellido(e.target.value)} value={registerPrimerApellido}/>
                             </div>
 
                             <div className="register__box">
-                                <i className='bx bx-home register__icon'></i>
+                                <i className='bx bx-home register__icon'/>
                                 <input type="text" placeholder="provincia" className="register__input" onChange={(e)=> setProvincia(e.target.value)} value={provincia} />
                             </div>
     
                             <div className="register__box">
-                                <i className='bx bx-at register__icon'></i>
+                                <i className='bx bx-at register__icon'/>
                                 <input type="text" placeholder="email" className="register__input" onChange={(e)=> setRegisterEmail(e.target.value)} value={registerEmail} />
                             </div>
 
                             <div className="register__box">
-                                <i className='bx bx-lock-alt register__icon'></i>
+                                <i className='bx bx-lock-alt register__icon'/>
                                 <input type="password" placeholder="contraseña" className="register__input" onChange={(e)=> setRegisterClave(e.target.value)} value={registerClave} />
                             </div>
 
                             <div className="register__box">
-                                <i className='bx bx-lock-alt register__icon'></i>
+                                <i className='bx bx-lock-alt register__icon'/>
                                 <input type="password" placeholder="repetir contraseña" className="register__input" onChange={(e)=> setRepetir_Clave(e.target.value)} value={repetir_Clave} />
                             </div>
                             
