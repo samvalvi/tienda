@@ -1,8 +1,11 @@
 import React, {useEffect, useState} from 'react'
+
 import profileImg from '../../img/Profile-Interface.svg'
+
 import UserData from '../components/user-data'
 import UserPassword from '../components/user-password'
 import UserDelete from '../components/user-delete'
+import History from '../components/history'
 
 import {NavLink} from 'react-router-dom'
 
@@ -24,6 +27,7 @@ export const EditForm = () => {
             case 'perfil': return <UserData/>
             case 'clave': return <UserPassword/>
             case 'cuenta': return <UserDelete/>
+            case 'historial': return <History/>
             default: return <UserData/>
         }
     }
@@ -61,7 +65,7 @@ export const EditForm = () => {
                                 <li  className="menu__item">
                                     <NavLink to="#" id="perfil" className="button__light" onClick={(e) => handleClick(e.target.id)}>
                                         Perfil
-                                        {(active.id === "perfil") ?
+                                        {(active.id === "perfil" || active.id === "") ?
                                             
                                             <i className='bx bx-chevron-down button-icon'></i>
                                             :
