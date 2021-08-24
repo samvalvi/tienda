@@ -373,10 +373,30 @@ img{
   align-items: center;
 }
 
+.user__info{
+  padding: 3%;
+}
+
 .menu{
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
+  justify-content: flex-start;
+}
+
+.menu__item{
+  font-size: var(--smaller-font-size);
+  padding: 0 3%;
+}
+
+.button__light{
+  display: inline-flex;
+  color: var(--dark-color);
+  font-weight: bolder;
   align-items: center;
+}
+
+.button__light:hover{
+  color: var(--dark-light);
 }
 
 .user__settings{
@@ -426,6 +446,15 @@ img{
   width: calc(100% - .1rem);
 }
 
+/*PASSWORD FORM*/
+.user__password-container{
+  padding: 3%;
+}
+
+/*DELETE ACCOUNT*/
+.user__account-container{
+  padding: 3%;
+}
 
 
 /*SEND CODE*/

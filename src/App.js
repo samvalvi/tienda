@@ -15,6 +15,7 @@ import { Error404 } from "./front/js/views/error404";
 
 import { Provider } from "react-redux";
 import { generateStore } from "./front/js/redux/store";
+import UserData from "./front/js/components/user-data";
 
 function App() {
   const store = generateStore();

@@ -58,7 +58,7 @@ export const Account = () => {
             setAuth(false)
             setLoginMsg(msg)
         }
-    }, [statusLogin])
+    }, [msg, statusLogin])
 
     return (
         <main className="l-main bd-grid">
