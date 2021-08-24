@@ -12,10 +12,11 @@ import { RecoverPassword } from "./front/js/views/recover-password";
 import { SendCode } from "./front/js/views/send-code";
 import { ShopBag } from "./front/js/views/shop-bag";
 import { Error404 } from "./front/js/views/error404";
+import {Delivery} from "./front/js/views/delivery";
 
 import { Provider } from "react-redux";
 import { generateStore } from "./front/js/redux/store";
-import UserData from "./front/js/components/user-data";
+
 
 function App() {
   const store = generateStore();
@@ -33,6 +34,7 @@ function App() {
           <Route path="/reset-password" component={RecoverPassword} />
           <Route path="/send-code" component={SendCode} />
           <Route path="/shopbag" component={ShopBag} />
+          <Route path="/delivery" component={Delivery} />
           <Route component={Error404} />
         </Switch>
       </Router>

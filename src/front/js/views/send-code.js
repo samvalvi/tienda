@@ -26,8 +26,8 @@ export const SendCode = () => {
                         </div>
 
                         <div className="send__code-image">
-                            <img src={ForgotPass} alt="send code"/>
-                            <NavLink to="https://storyset.com/people"><p className="image__attribution">People illustrations by Storyset</p></NavLink>
+                            <img src={ForgotPass} alt="send code" className="send__code-img"/>
+                            <NavLink to="https://storyset.com/people" className="image__attribution">People illustrations by Storyset</NavLink>
                         </div>
 
                         <div className="dialog__box">

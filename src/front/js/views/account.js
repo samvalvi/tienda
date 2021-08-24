@@ -69,7 +69,7 @@ export const Account = () => {
                     
                     <div className="login__form">
                         <form method="post">
-                            <h1 className="login__title">Acceso</h1>
+                            <h2 className="login__title">Acceso</h2>
                             {
                                 (loginMsg) ? <p className="login__error">{loginMsg}</p> : null
                             }
@@ -96,7 +96,7 @@ export const Account = () => {
 
                     <div className="register__form">
                         <form method="post" >
-                            <h1 className="register__title">Registro</h1>
+                            <h2 className="register__title">Registro</h2>
                         
                             <div className="register__message-container">
                                 <p className="register__message">*Todos los campos son obligatorios.</p>

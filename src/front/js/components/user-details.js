@@ -2,8 +2,6 @@ import React from 'react'
 
 import profileImg from '../../img/Profile-Interface.svg'
 
-import {NavLink} from 'react-router-dom'
-
 const UserDetails = () => {
     return (
         <div className="user__info">

@@ -27,7 +27,7 @@ export function Order() {
 
                 <div className="order__actions">
                     <div className="continue__button">
-                        <NavLink to="#" className="button__order">Continuar</NavLink>
+                        <NavLink to="/delivery" className="button__order">Continuar</NavLink>
                     </div>
                     <div className="cancel__button">
                         <NavLink to="#" className="button__order">Cancelar</NavLink>

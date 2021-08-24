@@ -47,7 +47,7 @@ export const EditForm = () => {
 
                         <div className="user__info">
                             <div className="user__img">
-                                <img src={profileImg} alt="user-img"/>
+                                <img src={profileImg} alt="user-img" className="profile-img"/>
                             </div>
 
                             <div className="user__data">

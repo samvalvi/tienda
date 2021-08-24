@@ -30,7 +30,7 @@ export const Product = () => {
                         <div key={index}>
                             
                             <div className="home__product">
-                                <img src={item.img} alt="new-candle" className="home__img"/>
+                                <img src={item.img} alt="new-candle" className="home__image"/>
                             </div>
 
                             <div className="home__data" id="home-data">
