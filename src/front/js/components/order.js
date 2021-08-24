@@ -18,7 +18,7 @@ export function Order() {
                 </div>
                 <div className="order__products">
                     <p className="quantity__products">Cantidad de productos:</p>
-                    <p className="total__products">Total:</p>
+                    <p className="total__products">Total: ₡</p>
                 </div>
                 
                 <div className="line__container">
@@ -27,10 +27,10 @@ export function Order() {
 
                 <div className="order__actions">
                     <div className="continue__button">
-                        <NavLink to="/delivery" className="button__order">Continuar</NavLink>
+                        <NavLink to="/delivery" className="button__order">Ordenar <i className='bx bx-right-arrow-alt button__order-icon'></i></NavLink>
                     </div>
                     <div className="cancel__button">
-                        <NavLink to="#" className="button__order">Cancelar</NavLink>
+                        <NavLink to="#" className="button__order">Cancelar <i class='bx bx-x button__order-icon'></i></NavLink>
                     </div>
                 </div>
             </div>

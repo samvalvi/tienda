@@ -871,7 +871,6 @@ img{
 
 .bag__item-img{
   object-fit: contain;
-
 }
 
 .subtitle__bag-quantity{
@@ -917,6 +916,13 @@ img{
   width: 30%;
 }
 
+.line{
+  border-top: solid var(--dark-color);
+  max-width: 400px;
+  padding: 2% 0;
+  margin: 20px auto 0 auto;
+}
+
 .order__details{
   position: relative;
   display: flex;
@@ -945,18 +951,20 @@ img{
 
 .button__order{
   display: inline-flex;
-  background-color: var(--dark-color);
-  color: var(--white-color);
-  padding: .5rem 1rem;
-  font-size: var(--smaller-font-size);
-  font-weight: var(--font-semibold);
-  border-radius: .5rem;
-  transition: .3s;
-  filter: drop-shadow(0 11px 8px rgba(0,0,0,.2))
+  color: var(--dark-color);
+  font-weight: bolder;
+  align-items: center;
 }
 
-.button__order:hover {
-  transform: translateY(-.25rem);
+.button__order-icon{
+  font-size: 1.25rem;
+  margin-left: var(--mb-1);
+  transition: .3s;
+}
+
+.button__order:hover .button__order-icon{
+  transform: translateX(.25rem);
+  color: var(--dark-light)
 }
 
 /*DELIVERY*/
