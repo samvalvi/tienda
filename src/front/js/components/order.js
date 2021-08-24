@@ -30,7 +30,7 @@ export function Order() {
                         <NavLink to="/delivery" className="button__order">Ordenar <i className='bx bx-right-arrow-alt button__order-icon'></i></NavLink>
                     </div>
                     <div className="cancel__button">
-                        <NavLink to="#" className="button__order">Cancelar <i class='bx bx-x button__order-icon'></i></NavLink>
+                        <NavLink to="#" className="button__order">Cancelar <i className='bx bx-x button__order-icon'></i></NavLink>
                     </div>
                 </div>
             </div>

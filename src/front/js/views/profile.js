@@ -39,10 +39,10 @@ export const EditForm = () => {
     
     return  (
         <main className="l-main">
-            <section className="section bd-grid">
+            <section className="section">
                 <h2 className="section-title">Mi cuenta</h2>
 
-                <div className="user__settings">
+                <div className="user__settings bd-grid">
                     <div className="settings__container">
 
                         <div className="user__info">

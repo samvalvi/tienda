@@ -43,7 +43,7 @@ export const Delivery = () => {
                                 </div>
                                 
                                 <div className="button__container">
-                                    <NavLink to="#" className="button">Confirmar compra</NavLink>
+                                    <NavLink to="#" className="delivery__button">Confirmar compra</NavLink>
                                 </div>
 
                             </div>

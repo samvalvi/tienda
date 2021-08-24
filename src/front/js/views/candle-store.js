@@ -26,7 +26,7 @@ export const CandleStore = () => {
     }
 
     return (
-        <main className="l-main bd-grid">
+        <main className="l-main">
              <section className="shop section" id="shop">
                 <h2 className="section-title">Tienda</h2>
                 

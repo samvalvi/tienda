@@ -7,7 +7,7 @@ import {Footer} from '../components/footer'
 const Home = () => {
 
   return (
-      <main className="l-main bd-grid">
+      <main className="l-main">
         <Product />
         <Featured />
         <Footer />

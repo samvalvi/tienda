@@ -61,7 +61,7 @@ export const Account = () => {
     }, [msg, statusLogin])
 
     return (
-        <main className="l-main bd-grid">
+        <main className="l-main">
             <section className="account section">
                 <h2 className="section-title">Mi cuenta</h2>
                 

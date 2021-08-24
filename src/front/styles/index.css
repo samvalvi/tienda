@@ -917,7 +917,7 @@ img{
 }
 
 .line{
-  border-top: solid var(--dark-color);
+  border-top: solid #4B5563;
   max-width: 400px;
   padding: 2% 0;
   margin: 20px auto 0 auto;
@@ -996,14 +996,13 @@ img{
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 0 1%;
   visibility: visible;
   transition: .3s;
 }
 
 .user__delivery{
   background-color: var(--dark-lighten);
-  padding: 1.5rem;
+  padding: 1.5rem 1.5rem .7rem;
   border-radius: .5rem;
   box-shadow: rgba(0, 0, 0, 0.1) 0 4px 6px -1px, rgba(0, 0, 0, 0.06) 0 2px 4px -1px;
   width: auto;
@@ -1021,6 +1020,22 @@ img{
 
 .right__container{
   width: 47%;
+}
+
+.delivery__button{
+  display: inline-flex;
+  background-color: var(--dark-color);
+  align-items: center;
+  color: var(--white-color);
+  padding: 1.125rem 2rem;
+  font-weight: var(--font-medium);
+  border-radius: .5rem;
+  transition: .3s;
+  filter: drop-shadow(0 11px 8px rgba(0,0,0,.2))
+}
+
+.delivery__button:hover {
+  transform: translateY(-.25rem);
 }
 
 .delivery__email-msg{
