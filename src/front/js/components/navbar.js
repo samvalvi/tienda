@@ -13,8 +13,10 @@ export const Navbar = () => {
     const [name, setName] = useState('');
 
     const dispatch = useDispatch();
+    const dispatchBadge = useDispatch();
 
     const data = useSelector(state => state.login.user);
+    const badge = useSelector(state => state.badge.quantity);
 
     //Cambia el background del navbar
     const changeBackground = () => {
@@ -26,6 +28,7 @@ export const Navbar = () => {
         }
     }
     
+    //Al cargar la pagina, se ejecuta el metodo
     window.addEventListener('scroll', changeBackground)
 
     //Muestra u oculta el menú
@@ -49,7 +52,8 @@ export const Navbar = () => {
             setIsLoggedIn(true);
             setName(data.primer_nombre);
         }
-    }, [data])
+        dispatchBadge(badgeQuantitySuccessAction());
+    }, [data, dispatchBadge, badge])
 
     const logoutUser = () => {
         dispatch(logoutUserAction())
@@ -107,7 +111,9 @@ export const Navbar = () => {
 
                 <div className="nav__shop">
                     <NavLink to="/shopbag" className="nav__link" id="nav-link" ><i className='bx bx-shopping-bag bx-flashing-hover'/></NavLink>
-                    <span className="icon__badge">9+</span>
+                    {
+                        (badge > 0) ? <span className="icon__badge">{badge}</span> : null
+                    }
                 </div>
             
             </nav>

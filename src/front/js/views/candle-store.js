@@ -4,6 +4,7 @@ import {NavLink} from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { getShopProductsAction } from '../redux/shopDucks'
 import { addItemAction } from '../redux/bagDucks'
+import {incrementBadgeAction} from '../redux/bagDucks'
 
 import {Footer} from '../components/footer'
 

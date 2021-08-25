@@ -8,6 +8,7 @@ import shopProductsReducer from './shopDucks';
 import registerUserReducer from './registerDucks';
 import userLoginReducer, {userActiveAction} from './loginDucks';
 import cartReducer from './bagDucks';
+import badgeReducer from './badgeDucks';
 
 const rootReducer = combineReducers({
     product: productReducer,
@@ -16,7 +17,8 @@ const rootReducer = combineReducers({
     shopProducts: shopProductsReducer,
     registration: registerUserReducer,
     login: userLoginReducer,
-    bag: cartReducer
+    bag: cartReducer,
+    badge: badgeReducer
 })
 
 //Configura la extensión de Chrome

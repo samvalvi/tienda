@@ -3,6 +3,7 @@ import React, {useEffect} from 'react'
 import {getHomeProductAction} from '../redux/homeDucks'
 import { useDispatch, useSelector } from 'react-redux'
 import { addItemAction } from '../redux/bagDucks'
+import { incrementBadgeAction } from '../redux/badgeDucks'
 
 import {NavLink} from 'react-router-dom'
 
@@ -10,6 +11,7 @@ export const Product = () => {
 
     const loadDispatch = useDispatch();
     const buyDispatch = useDispatch();
+    const badgeDispatch = useDispatch();
 
     useEffect(() => {
         loadDispatch(getHomeProductAction());
@@ -19,6 +21,7 @@ export const Product = () => {
 
     const addToBag = (product_id) => {
         buyDispatch(addItemAction(product_id))
+        badgeDispatch(incrementBadgeAction())
     }
 
     return (

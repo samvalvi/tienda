@@ -3,17 +3,20 @@ import React, {useEffect} from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { removeItemAction } from '../redux/bagDucks'
 import { increaseItemAction, decreaseItemAction } from '../redux/bagDucks'
+import {decrementBadgeAction} from '../redux/badgeDucks'
 
 export function Bag() {
     
     const dispatch = useDispatch();
     const increaseDispatch = useDispatch();
     const decreaseDispatch = useDispatch();
+    const badgeDispatch = useDispatch();
 
     const bagState = useSelector( state  => state.bag.cart )
 
     const deleteItem = (id) => {
         dispatch(removeItemAction(id))
+        badgeDispatch(decrementBadgeAction())
     }
 
     useEffect(() => {

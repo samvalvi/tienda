@@ -14,7 +14,7 @@ const ERROR_BADGE = 'ERROR_BADGE'
 
 
 //Reducer
-export default function reducer(state = initialData, action) {
+export default function badgeReducer(state = initialData, action) {
     switch (action.type) {
         case 'LOADING_BADGE':
             return {
