@@ -82,7 +82,7 @@ export const Delivery = () => {
                                 </div>
 
                                 <div className="container__message">
-                                    <h5 className="delivery__email-msg">Esta información será enviada a su email</h5>
+                                    <h5 className="delivery__email-msg">Esta información será enviada a su correo</h5>
                                 </div>
 
                             </div>
