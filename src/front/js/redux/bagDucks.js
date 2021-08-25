@@ -35,7 +35,7 @@ export default function cartReducer (state = initialData, action) {
         case 'TOTAL_ITEMS':
             return {...state, quantity: state.cart.reduce((acc, item) => acc + item.quantity, 0)}
         case 'GET_PRICE':
-            return {...state, price: state.cart.reduce((acc, item) => acc + item.precio, 0)}
+            return {...state, price: state.cart.reduce((acc, item) => acc + (item.quantity * item.precio), 0)}
         case 'ERROR':
             return {...state, error: true}
         default:
