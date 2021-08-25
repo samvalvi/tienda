@@ -1,7 +1,7 @@
 //Constantes
 const initialData = {
     products: [],
-    error: ""
+    error: null
 }
 
 //Types
@@ -14,7 +14,7 @@ export default function productReducer(state = initialData, action){
         case 'GET_PRODUCTS':
             return {...state, products: action.payload}
         case 'ERROR':
-            return {...state, error: action.payload}
+            return {...state, error: true}
         default:
             return state
     }

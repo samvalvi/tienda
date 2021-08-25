@@ -1,6 +1,9 @@
 //Constantes
 const initialData = {
-    cart: []
+    cart: [],
+    quantity: 0,
+    price: 0,
+    error: null
 }
 
 //Types
@@ -9,6 +12,7 @@ const INCREASE_ITEM = 'INCREASE_ITEM'
 const DECREASE_ITEM = 'DECREASE_ITEM'
 const REMOVE_ONE = 'REMOVE_ONE'
 const TOTAL_ITEMS = 'TOTAL_ITEMS'
+const GET_PRICE = 'GET_PRICE'
 const ERROR = 'ERROR'
 
 //Reducer
@@ -29,9 +33,11 @@ export default function cartReducer (state = initialData, action) {
         case 'REMOVE_ONE':
             return {...state, cart: state.cart.filter(i => i.id !== action.payload)}
         case 'TOTAL_ITEMS':
-            return {...state, total: action.payload}
+            return {...state, quantity: state.cart.reduce((acc, item) => acc + item.quantity, 0)}
+        case 'GET_PRICE':
+            return {...state, price: state.cart.reduce((acc, item) => acc + item.price, 0)}
         case 'ERROR':
-            return {...state}
+            return {...state, error: true}
         default:
             return state
     }
@@ -70,6 +76,11 @@ export const increaseItemAction = (product_id) => async(dispatch, getState) => {
             type: INCREASE_ITEM,
             payload: product_id
         })
+
+        dispatch({
+            type: TOTAL_ITEMS
+        })
+
     }catch(error) {
         dispatch({type: ERROR})
     }
@@ -81,6 +92,11 @@ export const decreaseItemAction = (product_id) => async(dispatch, getState) => {
             type: DECREASE_ITEM,
             payload: product_id
         })
+
+        dispatch({
+            type: TOTAL_ITEMS
+        })
+
     }catch(error) {
         dispatch({type: ERROR})
     }
@@ -92,12 +108,17 @@ export const removeItemAction = (product_id) => async(dispatch, getState) => {
             type: REMOVE_ONE,
             payload: product_id
         })
+
+        dispatch({
+            type: TOTAL_ITEMS
+        })
+
     }catch(error) {
         dispatch({type: ERROR})
     }
 }
 
-export const totalItem = () => async(dispatch, getState) => {
+export const totalItemAction = () => async(dispatch, getState) => {
     try{
         dispatch({
             type: TOTAL_ITEMS
