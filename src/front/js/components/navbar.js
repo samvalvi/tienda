@@ -106,6 +106,7 @@ export const Navbar = () => {
 
                 <div className="nav__shop">
                     <NavLink to="/shopbag" className="nav__link" id="nav-link" ><i className='bx bx-shopping-bag bx-flashing-hover'/></NavLink>
+                    <span className="icon__badge">9+</span>
                 </div>
             
             </nav>

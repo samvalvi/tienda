@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App'
 import './front/styles/index.css'
+import './front/styles/badge.css'
 
 ReactDOM.render(
   <React.StrictMode>
