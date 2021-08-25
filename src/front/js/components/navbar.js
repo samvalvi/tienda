@@ -4,6 +4,7 @@ import {NavLink, Link} from 'react-router-dom'
 
 import {useDispatch, useSelector} from 'react-redux'
 import { logoutUserAction } from '../redux/logoutDucks';
+import { badgeQuantitySuccessAction } from '../redux/badgeDucks';
 
 export const Navbar = () => {
     const [active, setActive] = useState(false);

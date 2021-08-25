@@ -50,15 +50,15 @@ export default function reducer(state = initialData, action) {
 }
 
 //Action Creators
-export const loadingBadge = () => async(dispatch, getState) => {
+export const loadingBadgeAction = () => async(dispatch, getState) => {
     dispatch({
         type: LOADING_BADGE
     })
 }
 
-export const badgeQuantitySuccess = () => async(dispatch, getState) => {
+export const badgeQuantitySuccessAction = () => async(dispatch, getState) => {
     try{
-        dispatch(loadingBadge());
+        dispatch(loadingBadgeAction());
         
         dispatch({
             type: BADGE_QUANTITY_SUCCESS
@@ -71,7 +71,7 @@ export const badgeQuantitySuccess = () => async(dispatch, getState) => {
     }
 }
 
-export const incrementBadge = () => async(dispatch, getState) => {
+export const incrementBadgeAction = () => async(dispatch, getState) => {
     try{
         dispatch({
             type: INCREMENT_BADGE
@@ -84,7 +84,7 @@ export const incrementBadge = () => async(dispatch, getState) => {
     }
 }
 
-export const decrementBadge = () => async(dispatch, getState) => {
+export const decrementBadgeAction = () => async(dispatch, getState) => {
     try{
         dispatch({
             type: DECREMENT_BADGE
