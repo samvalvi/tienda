@@ -513,11 +513,11 @@ img{
 .send__message-container{
   display:flex;
   flex-direction: row;
-  padding-bottom: 4%;
 }
 
 .send__code-img{
-  filter: drop-shadow(0 7px 5px rgba(0,0,0,.2))
+  filter: drop-shadow(0 7px 5px rgba(0,0,0,.2));
+  margin-top: 3%;
 }
 
 .send__message{
@@ -976,10 +976,14 @@ img{
   filter: drop-shadow(0 7px 5px rgba(0,0,0,.2))
 }
 
+.delivery__icon{
+  font-size: 1.5rem;
+  color: var(--dark-color);
+}
+
 .delivery__message{
   font-size:var(--smaller-font-size);
   color: var(--dark-color);
-  margin-bottom: var(--mb-3);
 }
 
 .user__delivery-container{

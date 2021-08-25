@@ -11,30 +11,30 @@ function UserData() {
                 <div className="user__data-form">
                     <form>
                         <div className="group__box">
-                            <label htmlFor="name">Primer nombre</label>
                             <div className="input__container">
-                                <input className="input__text" type="text" name="name" />
+                                <i className='bx bx-user login__icon' ></i>
+                                <input className="input__text" type="text" name="name" placeholder="primer nombre"/>
                             </div>
                         </div>
 
                         <div className="group__box">
-                            <label htmlFor="lastname">Primer apellido</label>
                             <div className="input__container">
-                                <input className="input__text" type="text" name="lastname" />
+                                <i className='bx bx-user login__icon' ></i>
+                                <input className="input__text" type="text" name="lastname" placeholder="primer apellido"></input>
                             </div>
                         </div>
 
                         <div className="group__box">
-                            <label htmlFor="address">Provincia</label>
                             <div className="input__container">
-                                <input className="input__text" type="text" name="address" />
+                                <i className='bx bx-map-alt login__icon' ></i>
+                                <input className="input__text" type="text" name="address" placeholder="provincia"/>
                             </div>
                         </div>
 
                         <div className="group__box">
-                            <label htmlFor="email">Email</label>
                             <div className="input__container">
-                                <input className="input__text" type="email" name="email" />
+                                <i className='bx bx-at login__icon'></i>
+                                <input className="input__text" type="email" name="email" placeholder="correo" />
                             </div>
                         </div>
                 

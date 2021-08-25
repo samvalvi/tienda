@@ -10,16 +10,16 @@ const UserPassword = () => {
         
                 <form>
                     <div className="group__box">
-                        <label htmlFor="nueva__clave">Nueva contraseña</label>
                         <div className="input__container">
-                            <input className="input__text" type="text" name="nueva__clave"></input>
+                            <i className='bx bx-lock-alt login__icon'></i>
+                            <input className="input__text" type="text" name="nueva__clave" placeholder="nueva clave"></input>
                         </div>
                     </div>
 
                     <div className="group__box">
-                        <label htmlFor="repetir__clave">Repetir contraseña</label>
                         <div className="input__container">
-                            <input className="input__text" type="text" name="repetir__clave"></input>
+                            <i className='bx bx-lock-alt login__icon'></i>
+                            <input className="input__text" type="text" name="repetir__clave" placeholder="repetir clave"></input>
                         </div>
                     </div>
 

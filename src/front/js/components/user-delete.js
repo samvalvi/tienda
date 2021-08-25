@@ -10,9 +10,9 @@ const UserDelete = () => {
 
                 <form>
                     <div className="group__box">
-                        <label htmlFor="clave">Clave</label>
                         <div className="input__container">
-                            <input className="input__text" type="password" name="clave"></input>
+                            <i className='bx bx-key login__icon' ></i>
+                            <input className="input__text" type="password" name="clave" placeholder="clave"></input>
                         </div>
                     </div>
 

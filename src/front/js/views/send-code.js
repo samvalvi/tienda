@@ -22,7 +22,7 @@ export const SendCode = () => {
                         
                         <div className="send__message-container">
                             <h2 className="send__code-message">Recuperar contraseña</h2>
-                            <i className='bx bx-x close__icon' onClick={() => {history.push("/account")}}></i>
+                            <i className='bx bx-x close__icon' onClick={() => history.push("/account")}></i>
                         </div>
 
                         <div className="send__code-image">

@@ -74,7 +74,7 @@ export const Account = () => {
                                 (loginMsg) ? <p className="login__error">{loginMsg}</p> : null
                             }
                             <div className="login__box">
-                                <i className='bx bx-user login__icon'/>
+                                <i className='bx bx-at login__icon'/>
                                 <input type="email" placeholder="email" className="login__input" onChange={(e) => setLoginEmail(e.target.value)} value={loginEmail}/>
                             </div>
     
@@ -119,7 +119,7 @@ export const Account = () => {
     
                             <div className="register__box">
                                 <i className='bx bx-at register__icon'/>
-                                <input type="text" placeholder="email" className="register__input" onChange={(e)=> setRegisterEmail(e.target.value)} value={registerEmail} />
+                                <input type="email" placeholder="email" className="register__input" onChange={(e)=> setRegisterEmail(e.target.value)} value={registerEmail} />
                             </div>
 
                             <div className="register__box">

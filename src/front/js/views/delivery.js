@@ -2,9 +2,12 @@ import React from 'react'
 
 import DeliveryImg from '../../img/Take-Away.svg'
 
-import {NavLink} from 'react-router-dom'
+import {NavLink, useHistory} from 'react-router-dom'
 
 export const Delivery = () => {
+
+    const history = useHistory()
+
     return (
         <main className="l-main">
             <section className="section">
@@ -14,7 +17,7 @@ export const Delivery = () => {
 
                         <div className="delivery__message-container">    
                             <h2 className="delivery__message">Entrega</h2>
-                            <i className='bx bx-x close__icon'></i>
+                            <i className='bx bx-x close__icon' onClick={()=> history.push("/shopbag")}></i>
                         </div>
 
                         <div className="img__delivery-container">
@@ -27,18 +30,22 @@ export const Delivery = () => {
                             <div className="left__container">
                                     
                                 <div className="input__container">
+                                    <i className='bx bx-user delivery__icon'></i>
                                     <input className="input__text" type="text" placeholder="nombre"></input>
                                 </div>
 
                                 <div className="input__container">
+                                    <i className='bx bx-at delivery__icon'></i>
                                     <input className="input__text" type="email" placeholder="correo"></input>
                                 </div>
                                 
                                 <div className="input__container">
+                                    <i className='bx bx-map-alt delivery__icon' ></i>
                                     <input className="input__text" type="text" placeholder="provincia"></input>
                                 </div>
                                 
                                 <div className="input__container">
+                                    <i className='bx bx-map-pin delivery__icon'></i>
                                     <input className="input__text" type="text" placeholder="dirección"></input>
                                 </div>
                                 
@@ -51,18 +58,22 @@ export const Delivery = () => {
                             <div className="right__container">
                                 
                                 <div className="input__container">
+                                    <i className='bx bx-user delivery__icon'></i>
                                     <input className="input__text" type="text" placeholder="apellido"></input>
                                 </div>
 
                                 <div className="input__container">
+                                    <i className='bx bx-mobile-alt delivery__icon'></i>
                                     <input className="input__text" type="text" placeholder="teléfono"></input>
                                 </div>
 
                                 <div className="input__container">
+                                    <i className='bx bx-map-alt delivery__icon' ></i>
                                     <input className="input__text" type="text" placeholder="cantón/distrito"></input>
                                 </div>
                             
                                 <div className="input__container">
+                                    <i className='bx bx-credit-card delivery__icon' ></i>
                                     <select className="input__text">
                                         <option className="input__text" defaultValue value="">Método de pago</option>
                                         <option className="input__text" value="efectivo">Efectivo</option>
