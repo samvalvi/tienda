@@ -3,17 +3,20 @@ import React, {useEffect} from 'react'
 import {NavLink} from 'react-router-dom'
 
 import { useDispatch, useSelector } from 'react-redux'
-import {totalItemAction} from '../redux/bagDucks'
+import {totalItemAction, getPriceAction } from '../redux/bagDucks'
 
 export function Order() {
 
-    const dispatch = useDispatch()
+    const totalItemDispatch = useDispatch();
+    const totalPriceDispatch = useDispatch();
 
     const totalItem = useSelector( state => state.bag.quantity )
+    const totalPrice = useSelector( state => state.bag.price )
 
     useEffect(()=> {
-        dispatch(totalItemAction())
-    }, [dispatch, totalItem])
+        totalItemDispatch(totalItemAction())
+        totalPriceDispatch(getPriceAction())
+    }, [totalItemDispatch, totalPriceDispatch, totalItem, totalPrice])
 
     return (
         <div className="order__container">
@@ -23,7 +26,7 @@ export function Order() {
                 </div>
                 <div className="order__products">
                     <p className="quantity__products">Cantidad de productos: {totalItem}</p>
-                    <p className="total__products">Total: ₡</p>
+                    <p className="total__products">Total: ₡{totalPrice}</p>
                 </div>
                 
                 <div className="line__container">

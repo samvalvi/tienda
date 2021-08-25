@@ -35,7 +35,7 @@ export default function cartReducer (state = initialData, action) {
         case 'TOTAL_ITEMS':
             return {...state, quantity: state.cart.reduce((acc, item) => acc + item.quantity, 0)}
         case 'GET_PRICE':
-            return {...state, price: state.cart.reduce((acc, item) => acc + item.price, 0)}
+            return {...state, price: state.cart.reduce((acc, item) => acc + item.precio, 0)}
         case 'ERROR':
             return {...state, error: true}
         default:
@@ -81,6 +81,10 @@ export const increaseItemAction = (product_id) => async(dispatch, getState) => {
             type: TOTAL_ITEMS
         })
 
+        dispatch({
+            type: GET_PRICE
+        })
+
     }catch(error) {
         dispatch({type: ERROR})
     }
@@ -95,6 +99,10 @@ export const decreaseItemAction = (product_id) => async(dispatch, getState) => {
 
         dispatch({
             type: TOTAL_ITEMS
+        })
+
+        dispatch({
+            type: GET_PRICE
         })
 
     }catch(error) {
@@ -122,6 +130,16 @@ export const totalItemAction = () => async(dispatch, getState) => {
     try{
         dispatch({
             type: TOTAL_ITEMS
+        })
+    }catch(error) {
+        dispatch({type: ERROR})
+    }
+}
+
+export const getPriceAction = () => async(dispatch, getState) => {
+    try{
+        dispatch({
+            type: GET_PRICE
         })
     }catch(error) {
         dispatch({type: ERROR})
