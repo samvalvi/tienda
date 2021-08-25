@@ -4,13 +4,14 @@ import {NavLink} from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { getShopProductsAction } from '../redux/shopDucks'
 import { addItemAction } from '../redux/bagDucks'
-import {incrementBadgeAction} from '../redux/bagDucks'
+import {incrementBadgeAction} from '../redux/badgeDucks'
 
 import {Footer} from '../components/footer'
 
 export const CandleStore = () => {
     const dispatch = useDispatch();
     const addItemDispatch = useDispatch();
+    const badgeDispatch = useDispatch();
 
     useEffect(() => {
         dispatch(getShopProductsAction());
@@ -23,6 +24,7 @@ export const CandleStore = () => {
         const item = shopBag.find(item => item.id === id)
         if(!item){
             addItemDispatch(addItemAction(id))
+            badgeDispatch(incrementBadgeAction())
         }
     }
 

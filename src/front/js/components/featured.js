@@ -5,11 +5,13 @@ import {NavLink} from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { getNewProductsAction } from '../redux/newDucks';
 import { addItemAction } from '../redux/bagDucks';
+import { incrementBadgeAction } from '../redux/badgeDucks';
 
 export const Featured = () => {
     //Lee la acción
     const loadDispatch = useDispatch();
     const buyDispatch = useDispatch();
+    const badgeDispatch = useDispatch();
 
     useEffect(() => {
         loadDispatch(getNewProductsAction());
@@ -17,9 +19,14 @@ export const Featured = () => {
 
     //Devuelve el state
     const productos = useSelector(store => store.newProduct.newProducts);
+    const shopBag = useSelector(store => store.bag.cart);
 
-    const addToBag = (producto_id) => {
-        buyDispatch(addItemAction(producto_id));
+    const addToBag = (id) => {
+        const item = shopBag.find(item => item.id === id);
+        if(!item){
+            buyDispatch(addItemAction(id));
+            badgeDispatch(incrementBadgeAction());
+        }
     }
 
     return (

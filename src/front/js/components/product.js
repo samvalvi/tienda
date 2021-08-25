@@ -13,15 +13,19 @@ export const Product = () => {
     const buyDispatch = useDispatch();
     const badgeDispatch = useDispatch();
 
+    const homeProduct = useSelector(state => state.homeProduct.homeProduct);
+    const shopBag = useSelector(state => state.bag.cart); 
+
     useEffect(() => {
         loadDispatch(getHomeProductAction());
     }, [loadDispatch])
 
-    const homeProduct = useSelector(state => state.homeProduct.homeProduct)
-
-    const addToBag = (product_id) => {
-        buyDispatch(addItemAction(product_id))
-        badgeDispatch(incrementBadgeAction())
+    const addToBag = (id) => {
+        const item = shopBag.find(item => item.id === id);
+        if(!item){
+            buyDispatch(addItemAction(id))
+            badgeDispatch(incrementBadgeAction())
+        }
     }
 
     return (
