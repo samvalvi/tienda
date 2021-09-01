@@ -15,7 +15,7 @@ export const Navbar = () => {
     const dispatch = useDispatch();
     const dispatchBadge = useDispatch();
 
-    const data = useSelector(state => state.login.user);
+    const data = useSelector(state => state.login);
     const badge = useSelector(state => state.badge.quantity);
 
     //Cambia el background del navbar
@@ -48,9 +48,9 @@ export const Navbar = () => {
     }
 
     useEffect(()=> {
-        if(data.status === 'successful'){
+        if(data.auth){
             setIsLoggedIn(true);
-            setName(data.primer_nombre);
+            setName(data.user.primer_nombre);
         }
         dispatchBadge(badgeQuantitySuccessAction());
     }, [data, dispatchBadge, badge])

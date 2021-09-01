@@ -12,6 +12,7 @@ export function Order() {
 
     const totalItem = useSelector( state => state.bag.quantity )
     const totalPrice = useSelector( state => state.bag.price )
+    const auth = useSelector( state => state.login.auth )
 
     useEffect(()=> {
         totalItemDispatch(totalItemAction())
@@ -35,7 +36,12 @@ export function Order() {
 
                 <div className="order__actions">
                     <div className="continue__button">
-                        <NavLink to="/delivery" className="button__order">Ordenar <i className='bx bx-right-arrow-alt button__order-icon'></i></NavLink>
+                        {(auth) ? 
+                            <NavLink to="/delivery" className="button__order">Ordenar <i className='bx bx-right-arrow-alt button__order-icon'></i></NavLink>
+                            :
+                            <NavLink to="/account" className="button__order">Ordenar <i className='bx bx-right-arrow-alt button__order-icon'></i></NavLink>
+                        }
+
                     </div>
                     <div className="cancel__button">
                         <NavLink to="#" className="button__order">Cancelar <i className='bx bx-x button__order-icon'></i></NavLink>

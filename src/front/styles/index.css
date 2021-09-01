@@ -711,9 +711,10 @@ img{
 }
 
 .login__forgot{
-  display: block;
-  width: max-content;
-  margin: 1.5rem auto;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  padding: .9rem 0 .3rem 0;
   font-size: var(--smaller-font-size);
   font-weight: 600;
   color: var(--dark-color);

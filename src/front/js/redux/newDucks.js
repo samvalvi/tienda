@@ -1,7 +1,7 @@
 //Constantes
 const initialData = {
     newProducts: [],
-    error: ""
+    error: null
 }
 
 //Types
@@ -14,7 +14,7 @@ export default function newProductReducer(state = initialData, action) {
         case 'GET_NEW_PRODUCTS':
             return {...state, newProducts: action.payload}
         case 'ERROR':
-            return {...state, error: action.payload}
+            return {...state, error: true}
         default:
             return state
     }
@@ -40,8 +40,7 @@ export const getNewProductsAction = () => async (dispatch, getState) => {
     )
     .catch(error =>
         dispatch({
-            type: ERROR, 
-            payload: error.message
+            type: ERROR
         })
     )
 }

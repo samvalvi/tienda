@@ -1,6 +1,7 @@
 //Constantes
 const initialData = {
-    homeProduct: '',
+    homeProduct: null,
+    error: null
 }
 
 //Types
@@ -13,15 +14,14 @@ export default function homeProductReducer(state = initialData, action) {
         case 'GET_HOME_PRODUCT':
             return {...state, homeProduct: action.payload}
         case 'ERROR':
-            return {...state}
+            return {...state, error: true}
         default:
             return state
     }
 }
 
 //Actions
-export const getHomeProductAction = () => async (dispatch, getState) => {
-    
+export const getHomeProductAction = () => async (dispatch, getState) => { 
         await fetch(process.env.REACT_APP_API_URL + '/api/productos', {
             method: "GET",
             mode: "cors",
@@ -32,9 +32,11 @@ export const getHomeProductAction = () => async (dispatch, getState) => {
             }
         })
         .then(response => response.json())
-        .then(data => dispatch({
-            type: GET_HOME_PRODUCT,
-            payload: data.filter(item => item.id === 7)
-        }))
+        .then(
+            data => dispatch({
+                type: GET_HOME_PRODUCT,
+                payload: data.filter(item => item.id === 2)
+            })
+        )
         .catch(error => dispatch({ type: ERROR}))
 }

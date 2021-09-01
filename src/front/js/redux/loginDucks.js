@@ -1,6 +1,8 @@
 //Constantes
 const initialData = {
-    user: {}
+    user: {},
+    auth: false,
+    error: null
 }
 
 //Types
@@ -13,13 +15,13 @@ const ERROR = 'ERROR'
 export default function userLoginReducer(state = initialData, action) {
     switch (action.type) {
         case 'LOGIN_SUCCESSFUL':
-            return {...state, user: action.payload}
+            return {...state, user: action.payload, auth: true}
         case 'LOGIN_UNSUCCESSFUL':
-            return {...state, user: action.payload}
+            return {...state, user: action.payload, auth: false}
         case 'USER_ACTIVE':
-            return {...state, user: action.payload}
+            return {...state, user: action.payload, auth: true}
         case 'ERROR':
-            return {...state}
+            return {...state, auth: false, error: true}
         default:
             return state
     }

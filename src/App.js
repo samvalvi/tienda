@@ -1,5 +1,5 @@
 import React from "react";
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import { BrowserRouter as Router, Route, Switch, Redirect } from "react-router-dom";
 
 import { ScrollToTop } from "./front/js/components/scroll-to-top";
 
@@ -14,15 +14,12 @@ import { ShopBag } from "./front/js/views/shop-bag";
 import { Error404 } from "./front/js/views/error404";
 import {Delivery} from "./front/js/views/delivery";
 
-import { Provider } from "react-redux";
-import { generateStore } from "./front/js/redux/store";
-
+import {useSelector} from "react-redux";
 
 function App() {
-  const store = generateStore();
-  
+  const auth = useSelector(state => state.login.auth);
+
   return (
-    <Provider store={store}>
       <Router>
         <ScrollToTop />
         <Navbar />
@@ -34,11 +31,10 @@ function App() {
           <Route path="/reset-password" component={RecoverPassword} />
           <Route path="/send-code" component={SendCode} />
           <Route path="/shopbag" component={ShopBag} />
-          <Route path="/delivery" component={Delivery} />
+          <Route path="/delivery" render={()=> auth ? <Delivery /> : <Redirect to="/account" />}/>
           <Route component={Error404} />
         </Switch>
       </Router>
-    </Provider>
   );
 }
 

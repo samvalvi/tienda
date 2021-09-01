@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react'
+import React, {useState} from 'react'
 
 import {NavLink, Redirect} from 'react-router-dom'
 
@@ -9,11 +9,8 @@ import { userLoginAction } from '../redux/loginDucks'
 import {Footer} from '../components/footer'
 
 export const Account = () => {
-    const [auth, setAuth] = useState(false)
-
     const [loginEmail, setLoginEmail] = useState('')
     const [loginClave, setLoginClave] = useState('')
-    const [loginMsg, setLoginMsg] = useState('')
 
     const [registerPrimerNombre, setRegisterPrimerNombre] = useState('')
     const [registerPrimerApellido, setRegisterPrimerApellido] = useState('')
@@ -21,17 +18,11 @@ export const Account = () => {
     const [registerEmail, setRegisterEmail] = useState('')
     const [registerClave, setRegisterClave] = useState('')
     const [repetir_Clave, setRepetir_Clave] = useState('')
-    const [registerMsg, setRegisterMsg] = useState('')
 
     const dispatchRegister = useDispatch()
     const dispatcherLogin = useDispatch()
 
-
-    const statusRegister = useSelector( (state) => state.registration.status )
-
-    useEffect(() => {
-        setRegisterMsg(statusRegister.msg)
-    }, [statusRegister])
+    const statusRegister = useSelector( state => state.registration.status.msg )
 
     const handleSubmitRegister = (e) => {
         e.preventDefault();
@@ -44,21 +35,12 @@ export const Account = () => {
         setRepetir_Clave('')
     }
 
-    const statusLogin = useSelector( state => state.login.user )
+    const statusLogin = useSelector( state => state.login)
     const msg = useSelector( state => state.login.user.msg )
 
     const handleSubmitLogin = () => {
         dispatcherLogin(userLoginAction( loginEmail, loginClave ))
     }
-
-    useEffect(() => {
-        if(statusLogin.status === 'successful') {
-            setAuth(true)
-        }else{
-            setAuth(false)
-            setLoginMsg(msg)
-        }
-    }, [msg, statusLogin])
 
     return (
         <main className="l-main">
@@ -71,11 +53,11 @@ export const Account = () => {
                         <form method="post">
                             <h2 className="login__title">Acceso</h2>
                             {
-                                (loginMsg) ? <p className="login__error">{loginMsg}</p> : null
+                                (msg) ? <p className="login__error">{msg}</p> : null
                             }
                             <div className="login__box">
                                 <i className='bx bx-user login__icon'/>
-                                <input type="email" placeholder="correo" className="login__input" onChange={(e) => setLoginEmail(e.target.value)} value={loginEmail}/>
+                                <input type="email" placeholder="usuario@ejemplo.com" className="login__input" onChange={(e) => setLoginEmail(e.target.value)} value={loginEmail}/>
                             </div>
     
                             <div className="login__box">
@@ -90,7 +72,7 @@ export const Account = () => {
 
                             <NavLink to="/send-code" className="login__forgot" >¿Olvidó su contraseña?</NavLink>
                         </form>
-                        {(auth) ? <Redirect to='/' /> : null}
+                        {(statusLogin.auth) ? <Redirect to='/' /> : null}
                     </div>
 
 
@@ -133,7 +115,7 @@ export const Account = () => {
                             </div>
                             
                             {
-                                (registerMsg) ? <p className="register__error">{registerMsg}</p> : null
+                                (statusRegister) ? <p className="register__error">{statusRegister}</p> : null
                             }
 
                             <NavLink to="#" className="button" onClick={e => handleSubmitRegister(e)}>Crear cuenta</NavLink>

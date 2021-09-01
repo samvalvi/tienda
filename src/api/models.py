@@ -49,15 +49,23 @@ class Usuario(db.Model):
 class Orden(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     usuario = db.Column(db.String(200), db.ForeignKey('usuario.email'))
+    distrito = db.Column(db.String(150), nullable=False)
+    direccion = db.Column(db.Text(), nullable=False)
+    telefono = db.Column(db.String(150), nullable=False)
     productos = db.Column(db.Text())
     total = db.Column(db.Numeric(asdecimal=False))
     cantidad = db.Column(db.Integer)
+    metodo_pago = db.Column(db.String(250), nullable=False)
 
     def serialize(self):
         return {
             'id': self.id,
             'usuario': self.usuario,
+            'distrito': self.distrito,
+            'direccion': self.direccion,
+            'telefono': self.telefono,
             'productos': self.productos,
             'cantidad': self.cantidad,
-            'total': self.total
+            'total': self.total,
+            'pago': self.metodo_pago
         }

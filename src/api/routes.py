@@ -195,7 +195,7 @@ def mostrar_producto():
     return jsonify(response_body), 200
 
 
-@api.route('/nuevaOrden', methods=['POST'])
+@api.route('/nueva/orden', methods=['POST'])
 @jwt_required()
 def crear_orden():
     current_user_id = get_jwt_identity()
@@ -230,7 +230,7 @@ def crear_orden():
     return jsonify(response_body), 200
 
 
-@api.route('/mostrarOrden', methods=['GET'])
+@api.route('/mostrar/orden', methods=['GET'])
 @jwt_required()
 def mostrar_orden():
     current_user_id = get_jwt_identity()
@@ -250,7 +250,7 @@ def mostrar_orden():
     return jsonify(response_body)
 
 
-@api.route('/actualizar-clave', methods=['PUT'])
+@api.route('/actualizar/clave', methods=['PUT'])
 @jwt_required()
 def actualizar_clave():
     current_user_id = get_jwt_identity()

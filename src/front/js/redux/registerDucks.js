@@ -1,6 +1,7 @@
 //Constantes
 const initialData = {
-    status: '',
+    status: {},
+    error: null
 }
 
 //Types
@@ -13,7 +14,7 @@ export default function registerUserReducer(state=initialData, action){
         case 'POST_USER_REGISTER':
             return {...state, status: action.payload}
         case 'ERROR':
-            return {...state}
+            return {...state, error: true}
         default:
             return state
     }

@@ -4,6 +4,8 @@ import DeliveryImg from '../../img/Take-Away.svg'
 
 import {NavLink, useHistory} from 'react-router-dom'
 
+import {useDispatch, useSelector} from 'react-redux'
+
 export const Delivery = () => {
 
     const history = useHistory()
