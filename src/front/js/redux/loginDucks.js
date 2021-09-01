@@ -45,6 +45,7 @@ export const userLoginAction = (username, password) => async (dispatch, getState
         .then(data => {
                 if(data.access_token){    
                     dispatch({ type: LOGIN_SUCCESSFUL, payload: data})
+                    localStorage.setItem('data', JSON.stringify(data))
                 }else{
                     dispatch({ type: LOGIN_UNSUCCESSFUL, payload: data})   
                 }
