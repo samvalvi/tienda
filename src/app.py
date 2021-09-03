@@ -1,4 +1,5 @@
 import os
+from datetime import timedelta
 from flask import Flask, jsonify, send_from_directory
 from flask_cors import CORS
 from api.models import db
@@ -22,8 +23,11 @@ db.init_app(app)
 CORS(app)
 
 app.config['JWT_SUPER_SECRET_KEY'] = os.environ.get('SECRET_KEY')
+# Token espire time in minutes
+app.config['JWT_ACCESS_TOKEN_EXPIRES'] = timedelta(minutes=5)
+app.config["JWT_REFRESH_TOKEN_EXPIRES"] = timedelta(days=3)
 
-jwt = JWTManager(app)
+jwt = JWTManager(app) 
 
 # add the admin
 setup_admin(app)

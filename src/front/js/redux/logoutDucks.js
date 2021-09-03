@@ -1,6 +1,7 @@
 //Constantes
 const initialData = {
-    user: {}
+    user: {},
+    error: null
 }
 
 //Types
@@ -11,6 +12,8 @@ export default function logoutUserRedux (state = initialData, action) {
     switch (action.type) {
         case 'LOGOUT_USER':
             return {...state, user: null}
+        case 'ERROR':
+            return {...state, error: true}
         default:
             return state
     }
@@ -18,8 +21,15 @@ export default function logoutUserRedux (state = initialData, action) {
 
 //Action Creator
 export const logoutUserAction = () => (dispatch, getState) => {
-        localStorage.removeItem('data')
-        dispatch({
-            type: LOGOUT_USER
-        })
+        try{
+            localStorage.removeItem('data')
+            dispatch({
+                type: LOGOUT_USER
+            })
+
+        }catch(error) {
+            dispatch({
+                type: 'ERROR'
+            })
+        }
 }

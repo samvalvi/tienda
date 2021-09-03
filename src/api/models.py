@@ -12,7 +12,8 @@ class Candela(db.Model):
     precio = db.Column(db.Numeric(asdecimal=False), nullable=False)
     descripcion = db.Column(db.Text(), nullable=False)
     img = db.Column(db.String(225))
-    nuevo = db.Column(db.Boolean)
+    nuevo = db.Column(db.Boolean, default=False)
+    home_img = db.Column(db.Boolean, default=False)
 
     def serialize(self):
         return {
@@ -24,7 +25,8 @@ class Candela(db.Model):
             'precio': self.precio,
             'descripcion': self.descripcion,
             'img': self.img,
-            'nuevo': self.nuevo
+            'nuevo': self.nuevo,
+            'home_img': self.home_img
         }
 
 
@@ -35,6 +37,8 @@ class Usuario(db.Model):
     provincia = db.Column(db.String(150), nullable=False)
     email = db.Column(db.String(200), unique=True, nullable=False)
     clave = db.Column(db.LargeBinary(256), nullable=False)
+    is_active = db.Column(db.Boolean, default=False)
+    
 
     def serialize(self):
         return {
@@ -43,6 +47,7 @@ class Usuario(db.Model):
             'primer_apellido': self.primer_apellido,
             'provincia': self.provincia,
             'email': self.email,
+            'is_active': self.is_active
         }
         
 
@@ -67,5 +72,5 @@ class Orden(db.Model):
             'productos': self.productos,
             'cantidad': self.cantidad,
             'total': self.total,
-            'pago': self.metodo_pago
+            'metodo_pago': self.metodo_pago
         }

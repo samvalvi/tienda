@@ -1,8 +1,10 @@
-from werkzeug.wrappers import UserAgentMixin
+from datetime import datetime
+from datetime import timedelta
+from datetime import timezone
 import bcrypt
 from flask import Flask, request, jsonify, url_for, Blueprint, redirect
 from api.models import db, Candela, Usuario, Orden
-from flask_jwt_extended import create_access_token, get_jwt_identity, jwt_required, JWTManager
+from flask_jwt_extended import create_access_token, create_refresh_token, get_jwt_identity, jwt_required, JWTManager
 
 api = Blueprint('api', __name__)
 
@@ -88,12 +90,24 @@ def inicio_sesion():
 
     if request_body['correo'] == usuario.email and password:
         token = create_access_token(identity=usuario.id)
+        refresh_token = create_refresh_token(identity=usuario.id)
+        
         response_body = {
             'primer_nombre': usuario.primer_nombre,
             'access_token': token,
+            'refresh_token': refresh_token,
             'status': 'successful'
         }
         return jsonify(response_body), 200
+    
+    
+@api.route('refrescar/token', methods=['POST'])
+@jwt_required(refresh=True)
+def refrescar_token():
+    current_user = get_jwt_identity()
+    access_token = create_access_token(identity=current_user)
+    
+    return jsonify({'access_token': access_token}), 200
 
 
 @api.route('/actualizar', methods=['GET', 'POST'])

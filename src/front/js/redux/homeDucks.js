@@ -1,6 +1,6 @@
 //Constantes
 const initialData = {
-    homeProduct: null,
+    homeProduct: [],
     error: null
 }
 
@@ -35,7 +35,7 @@ export const getHomeProductAction = () => async (dispatch, getState) => {
         .then(
             data => dispatch({
                 type: GET_HOME_PRODUCT,
-                payload: data.filter(item => item.id === 2)
+                payload: data.filter(item => item.home_img)
             })
         )
         .catch(error => dispatch({ type: ERROR}))
