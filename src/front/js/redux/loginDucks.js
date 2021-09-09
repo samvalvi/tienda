@@ -1,6 +1,8 @@
 //Constantes
 const initialData = {
     user: {},
+    token: '',
+    refresh_token: '',
     auth: false,
     error: null
 }
@@ -15,7 +17,7 @@ const ERROR = 'ERROR'
 export default function userLoginReducer(state = initialData, action) {
     switch (action.type) {
         case 'LOGIN_SUCCESSFUL':
-            return {...state, user: action.payload, auth: true}
+            return {...state, user: action.payload.user, token: action.payload.access_token, refresh_token: action.payload.refresh_token, auth: true}
         case 'LOGIN_UNSUCCESSFUL':
             return {...state, user: action.payload, auth: false}
         case 'USER_ACTIVE':
@@ -45,7 +47,7 @@ export const userLoginAction = (username, password) => async (dispatch, getState
         .then(data => {
                 if(data.access_token){    
                     dispatch({ type: LOGIN_SUCCESSFUL, payload: data})
-                    localStorage.setItem('data', JSON.stringify(data))
+                    localStorage.setItem('data', JSON.stringify(data.user))
                 }else{
                     dispatch({ type: LOGIN_UNSUCCESSFUL, payload: data})   
                 }

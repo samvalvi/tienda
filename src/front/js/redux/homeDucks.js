@@ -1,6 +1,6 @@
 //Constantes
 const initialData = {
-    homeProduct: [],
+    homeProduct: null,
     error: null
 }
 

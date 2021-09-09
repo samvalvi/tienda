@@ -91,14 +91,35 @@ def inicio_sesion():
     if request_body['correo'] == usuario.email and password:
         token = create_access_token(identity=usuario.id)
         refresh_token = create_refresh_token(identity=usuario.id)
+        usuario.is_active = True
+        
+        db.session.add(usuario)
+        db.session.commit()
         
         response_body = {
-            'primer_nombre': usuario.primer_nombre,
+            'user': {
+                'primer_nombre': usuario.primer_nombre,
+                'primer_apellido': usuario.primer_apellido,
+                'usuario': usuario.email   
+            },
             'access_token': token,
             'refresh_token': refresh_token,
             'status': 'successful'
         }
         return jsonify(response_body), 200
+
+
+@api.route('/salir', methods=['POST'])
+@jwt_required(refresh=True)
+def cerra_sesion():
+    current_user = get_jwt_identity()
+    
+    usuario = Usuario.query.filter_by(id=current_user).first()
+    usuario.is_active = False
+    db.session.add(usuario)
+    db.session.commit()
+    
+    return jsonify({'msg': 'Sesión cerrada', 'status': 'successful'}), 200
     
     
 @api.route('refrescar/token', methods=['POST'])

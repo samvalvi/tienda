@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React, {useState, useEffect} from 'react'
 
 import {NavLink, Redirect} from 'react-router-dom'
 
@@ -37,10 +37,17 @@ export const Account = () => {
 
     const statusLogin = useSelector( state => state.login)
     const msg = useSelector( state => state.login.user.msg )
+    const token = useSelector( state => state.login.token )
+    const refresh_token = useSelector( state => state.login.refresh_token )
 
     const handleSubmitLogin = () => {
         dispatcherLogin(userLoginAction( loginEmail, loginClave ))
     }
+
+    useEffect(() => {
+        console.log(`token: ${token}`);
+        console.log(`refresh token: ${refresh_token}`)
+    },[token, refresh_token])
 
     return (
         <main className="l-main">

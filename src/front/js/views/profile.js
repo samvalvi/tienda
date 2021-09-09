@@ -8,12 +8,17 @@ import UserDelete from '../components/user-delete'
 import History from '../components/history'
 
 import {NavLink} from 'react-router-dom'
+import { useDispatch, useSelector } from 'react-redux'
 
 export const EditForm = () => {
     const [active, setActive] = useState({
         id: '',
         state: false
     })
+
+    const nombre = useSelector(state => state.login.user.primer_nombre);
+    const apellido = useSelector(state => state.login.user.primer_apellido);
+    const email = useSelector(state => state.login.user.usuario);
 
 
     const handleClick = (id) =>{
@@ -34,7 +39,7 @@ export const EditForm = () => {
 
     useEffect(() => {
     
-    }, [active])
+    }, [active, nombre, apellido, email])
 
     
     return  (
@@ -51,8 +56,8 @@ export const EditForm = () => {
                             </div>
 
                             <div className="user__data">
-                                <h2>John Doe</h2>
-                                <h2>Usuario@email.com</h2>
+                                <h2>{nombre} {apellido}</h2>
+                                <h2>{email}</h2>
                             </div>
                         </div>
 

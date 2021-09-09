@@ -25,7 +25,7 @@ CORS(app)
 app.config['JWT_SUPER_SECRET_KEY'] = os.environ.get('SECRET_KEY')
 # Token espire time in minutes
 app.config['JWT_ACCESS_TOKEN_EXPIRES'] = timedelta(minutes=5)
-app.config["JWT_REFRESH_TOKEN_EXPIRES"] = timedelta(days=3)
+app.config["JWT_REFRESH_TOKEN_EXPIRES"] = timedelta(days=2)
 
 jwt = JWTManager(app) 
 
